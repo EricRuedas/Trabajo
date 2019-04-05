@@ -1,0 +1,12 @@
+INPUT(
+./debug\main.o
+./debug\mainwindow.o
+./debug\screencombate.o
+./debug\screenpersonajes.o
+./debug\reglas.o
+./debug\qrc_resource.o
+./debug\moc_mainwindow.o
+./debug\moc_screencombate.o
+./debug\moc_screenpersonajes.o
+./debug\moc_reglas.o
+);

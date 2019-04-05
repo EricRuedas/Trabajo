@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/mini">
+        <file>minimago.png</file>
+        <file>miniguerrero.png</file>
+    </qresource>
+</RCC>
