@@ -12,10 +12,9 @@ ScreenCombate::ScreenCombate(QWidget *parent) :
 
     // Para las imagenes de los personajes:
 
-    QPixmap pic1("C:/Users/ericr/Downloads/4ºGRADOUNIVERSIDAD/InformaticaAvanzada/TrabajoFinal/mago1_quieto.png");
+    QPixmap pic1(":/mini/mago1_quieto.png");
     ui->picpersonaje1->setPixmap(pic1);
-
-    QPixmap pic2("C:/Users/ericr/Downloads/4ºGRADOUNIVERSIDAD/InformaticaAvanzada/TrabajoFinal/mago2_ataque.png");
+    QPixmap pic2(":/mini/mago2_ataque.png");
     ui->picpersonaje2->setPixmap(pic2);
 
 
