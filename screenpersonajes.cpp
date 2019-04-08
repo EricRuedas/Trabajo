@@ -10,13 +10,6 @@ screenpersonajes::screenpersonajes(QWidget *parent) :
 
     // Creación de las opciones del comboBox y incorporación de iconos del personaje:
 
-    ui->seleccion1->setIconSize(QSize(50,50));
-    ui->seleccion2->setIconSize(QSize(50,50));
-    ui->seleccion3->setIconSize(QSize(50,50));
-    ui->seleccion4->setIconSize(QSize(50,50));
-    ui->seleccion5->setIconSize(QSize(50,50));
-    ui->seleccion6->setIconSize(QSize(50,50));
-
     ui->seleccion1->addItem(QIcon(":/mini/miniguerrero.png"),"Guerrero");
     ui->seleccion1->addItem(QIcon(":/mini/minimago.png"),"Mago");
     ui->seleccion1->addItem(QIcon(":/mini/minimago.png"),"Clérigo");

@@ -2,13 +2,5 @@
     <qresource prefix="/mini">
         <file>minimago.png</file>
         <file>miniguerrero.png</file>
-        <file>guerrero1_ataque.png</file>
-        <file>guerrero1_quieto.png</file>
-        <file>guerrero2_ataque.png</file>
-        <file>guerrero2_quieto.png</file>
-        <file>mago1_ataque.png</file>
-        <file>mago1_quieto.png</file>
-        <file>mago2_ataque.png</file>
-        <file>mago2_quieto.png</file>
     </qresource>
 </RCC>

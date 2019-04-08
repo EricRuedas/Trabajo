@@ -27,12 +27,14 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     screencombate.cpp \
     screenpersonajes.cpp \
-    reglas.cpp
+    reglas.cpp \
+    personajes.cpp
 
 HEADERS  += mainwindow.h \
     screencombate.h \
     screenpersonajes.h \
-    reglas.h
+    reglas.h \
+    personajes.h
 
 FORMS    += mainwindow.ui \
     screencombate.ui \

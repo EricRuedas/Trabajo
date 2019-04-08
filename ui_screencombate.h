@@ -39,12 +39,13 @@ public:
     QProgressBar *barrapoder2;
     QLabel *picpersonaje2;
     QPushButton *fusion2;
-    QLabel *mensaje2;
     QComboBox *comboBoxu2;
     QComboBox *comboBoxf2;
     QProgressBar *barravida2;
     QPushButton *cambiar2;
     QPushButton *usar2;
+    QComboBox *comboBoxc1;
+    QComboBox *comboBoxc2;
 
     void setupUi(QDialog *ScreenCombate)
     {
@@ -66,7 +67,7 @@ public:
         barrapoder1 = new QProgressBar(ScreenCombate);
         barrapoder1->setObjectName(QStringLiteral("barrapoder1"));
         barrapoder1->setGeometry(QRect(210, 10, 81, 23));
-        barrapoder1->setMaximum(10);
+        barrapoder1->setMaximum(200);
         barrapoder1->setValue(5);
         cambiar1 = new QPushButton(ScreenCombate);
         cambiar1->setObjectName(QStringLiteral("cambiar1"));
@@ -75,7 +76,7 @@ public:
         barravida1->setObjectName(QStringLiteral("barravida1"));
         barravida1->setGeometry(QRect(40, 10, 151, 23));
         barravida1->setStyleSheet(QStringLiteral(""));
-        barravida1->setMaximum(100);
+        barravida1->setMaximum(200);
         barravida1->setValue(50);
         picpersonaje1 = new QLabel(ScreenCombate);
         picpersonaje1->setObjectName(QStringLiteral("picpersonaje1"));
@@ -89,7 +90,7 @@ public:
         barrapoder2 = new QProgressBar(ScreenCombate);
         barrapoder2->setObjectName(QStringLiteral("barrapoder2"));
         barrapoder2->setGeometry(QRect(720, 10, 81, 23));
-        barrapoder2->setMaximum(10);
+        barrapoder2->setMaximum(200);
         barrapoder2->setValue(5);
         picpersonaje2 = new QLabel(ScreenCombate);
         picpersonaje2->setObjectName(QStringLiteral("picpersonaje2"));
@@ -97,9 +98,6 @@ public:
         fusion2 = new QPushButton(ScreenCombate);
         fusion2->setObjectName(QStringLiteral("fusion2"));
         fusion2->setGeometry(QRect(840, 420, 121, 41));
-        mensaje2 = new QLabel(ScreenCombate);
-        mensaje2->setObjectName(QStringLiteral("mensaje2"));
-        mensaje2->setGeometry(QRect(560, 490, 401, 31));
         comboBoxu2 = new QComboBox(ScreenCombate);
         comboBoxu2->setObjectName(QStringLiteral("comboBoxu2"));
         comboBoxu2->setGeometry(QRect(560, 460, 121, 22));
@@ -109,7 +107,7 @@ public:
         barravida2 = new QProgressBar(ScreenCombate);
         barravida2->setObjectName(QStringLiteral("barravida2"));
         barravida2->setGeometry(QRect(820, 10, 151, 23));
-        barravida2->setMaximum(100);
+        barravida2->setMaximum(200);
         barravida2->setValue(50);
         cambiar2 = new QPushButton(ScreenCombate);
         cambiar2->setObjectName(QStringLiteral("cambiar2"));
@@ -117,6 +115,12 @@ public:
         usar2 = new QPushButton(ScreenCombate);
         usar2->setObjectName(QStringLiteral("usar2"));
         usar2->setGeometry(QRect(560, 420, 121, 41));
+        comboBoxc1 = new QComboBox(ScreenCombate);
+        comboBoxc1->setObjectName(QStringLiteral("comboBoxc1"));
+        comboBoxc1->setGeometry(QRect(180, 460, 121, 22));
+        comboBoxc2 = new QComboBox(ScreenCombate);
+        comboBoxc2->setObjectName(QStringLiteral("comboBoxc2"));
+        comboBoxc2->setGeometry(QRect(700, 460, 121, 22));
 
         retranslateUi(ScreenCombate);
 
@@ -137,7 +141,6 @@ public:
         barrapoder2->setFormat(QApplication::translate("ScreenCombate", "%v/10", Q_NULLPTR));
         picpersonaje2->setText(QString());
         fusion2->setText(QApplication::translate("ScreenCombate", "FUSI\303\223N", Q_NULLPTR));
-        mensaje2->setText(QApplication::translate("ScreenCombate", "TextLabel", Q_NULLPTR));
         barravida2->setFormat(QApplication::translate("ScreenCombate", "%v/100", Q_NULLPTR));
         cambiar2->setText(QApplication::translate("ScreenCombate", "CAMBIAR", Q_NULLPTR));
         usar2->setText(QApplication::translate("ScreenCombate", "USAR", Q_NULLPTR));

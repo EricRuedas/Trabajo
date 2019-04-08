@@ -4,6 +4,7 @@ INPUT(
 ./release\screencombate.o
 ./release\screenpersonajes.o
 ./release\reglas.o
+./release\personajes.o
 ./release\qrc_resource.o
 ./release\moc_mainwindow.o
 ./release\moc_screencombate.o
