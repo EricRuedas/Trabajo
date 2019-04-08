@@ -30,6 +30,14 @@ Guerrero::Guerrero():Personaje(){
     costes.push_back(15);
     hab.addItem("Espadazo (0 PH)");
     hab.addItem("Aumento (15 PH)");
+    QPixmap pic1(":/mini/guerrero1_quieto.png");
+    im_normal1=pic1;
+    QPixmap pic2(":/mini/guerrero1_ataque.png");
+    im_ataque1=pic2;
+    QPixmap pic3(":/mini/guerrero2_quieto.png");
+    im_normal2=pic3;
+    QPixmap pic4(":/mini/guerrero2_ataque.png");
+    im_ataque2=pic4;
 }
 
 Guerrero::~Guerrero(){}
@@ -69,6 +77,14 @@ Mago::Mago():Personaje(){
     costes.push_back(20);
     hab.addItem("Hechizo (0 PH)");
     hab.addItem("Hechizo gordo(20 PH)");
+    QPixmap pic1(":/mini/mago1_quieto.png");
+    im_normal1=pic1;
+    QPixmap pic2(":/mini/mago1_ataque.png");
+    im_ataque1=pic2;
+    QPixmap pic3(":/mini/mago2_quieto.png");
+    im_normal2=pic3;
+    QPixmap pic4(":/mini/mago2_ataque.png");
+    im_ataque2=pic4;
 }
 
 Mago::~Mago(){}
@@ -108,6 +124,14 @@ Clerigo::Clerigo():Personaje(){
     costes.push_back(20);
     hab.addItem("Bastonazo (0 PH)");
     hab.addItem("Curar (20 PH)");
+    QPixmap pic1(":/mini/clerigo1_quieto.png");
+    im_normal1=pic1;
+    QPixmap pic2(":/mini/clerigo1_ataque.png");
+    im_ataque1=pic2;
+    QPixmap pic3(":/mini/clerigo2_quieto.png");
+    im_normal2=pic3;
+    QPixmap pic4(":/mini/clerigo2_ataque.png");
+    im_ataque2=pic4;
 }
 
 Clerigo::~Clerigo(){}

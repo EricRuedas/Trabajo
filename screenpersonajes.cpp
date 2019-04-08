@@ -10,24 +10,32 @@ screenpersonajes::screenpersonajes(QWidget *parent) :
 
     // Creación de las opciones del comboBox y incorporación de iconos del personaje:
 
+    ui->seleccion1->setIconSize(QSize(50,50));
+    ui->seleccion2->setIconSize(QSize(50,50));
+    ui->seleccion3->setIconSize(QSize(50,50));
+    ui->seleccion4->setIconSize(QSize(50,50));
+    ui->seleccion5->setIconSize(QSize(50,50));
+    ui->seleccion6->setIconSize(QSize(50,50));
+
+
     ui->seleccion1->addItem(QIcon(":/mini/miniguerrero.png"),"Guerrero");
     ui->seleccion1->addItem(QIcon(":/mini/minimago.png"),"Mago");
-    ui->seleccion1->addItem(QIcon(":/mini/minimago.png"),"Clérigo");
+    ui->seleccion1->addItem(QIcon(":/mini/miniclerigo.png"),"Clérigo");
     ui->seleccion2->addItem(QIcon(":/mini/miniguerrero.png"),"Guerrero");
     ui->seleccion2->addItem(QIcon(":/mini/minimago.png"),"Mago");
-    ui->seleccion2->addItem(QIcon(":/mini/minimago.png"),"Clérigo");
+    ui->seleccion2->addItem(QIcon(":/mini/miniclerigo.png"),"Clérigo");
     ui->seleccion3->addItem(QIcon(":/mini/miniguerrero.png"),"Guerrero");
     ui->seleccion3->addItem(QIcon(":/mini/minimago.png"),"Mago");
-    ui->seleccion3->addItem(QIcon(":/mini/minimago.png"),"Clérigo");
-    ui->seleccion4->addItem(QIcon(":/mini/miniguerrero.png"),"Guerrero");
-    ui->seleccion4->addItem(QIcon(":/mini/minimago.png"),"Mago");
-    ui->seleccion4->addItem(QIcon(":/mini/minimago.png"),"Clérigo");
-    ui->seleccion5->addItem(QIcon(":/mini/miniguerrero.png"),"Guerrero");
-    ui->seleccion5->addItem(QIcon(":/mini/minimago.png"),"Mago");
-    ui->seleccion5->addItem(QIcon(":/mini/minimago.png"),"Clérigo");
-    ui->seleccion6->addItem(QIcon(":/mini/miniguerrero.png"),"Guerrero");
-    ui->seleccion6->addItem(QIcon(":/mini/minimago.png"),"Mago");
-    ui->seleccion6->addItem(QIcon(":/mini/minimago.png"),"Clérigo");
+    ui->seleccion3->addItem(QIcon(":/mini/miniclerigo.png"),"Clérigo");
+    ui->seleccion4->addItem(QIcon(":/mini/miniguerrero2.png"),"Guerrero");
+    ui->seleccion4->addItem(QIcon(":/mini/minimago2.png"),"Mago");
+    ui->seleccion4->addItem(QIcon(":/mini/miniclerigo2.png"),"Clérigo");
+    ui->seleccion5->addItem(QIcon(":/mini/miniguerrero2.png"),"Guerrero");
+    ui->seleccion5->addItem(QIcon(":/mini/minimago2.png"),"Mago");
+    ui->seleccion5->addItem(QIcon(":/mini/miniclerigo2.png"),"Clérigo");
+    ui->seleccion6->addItem(QIcon(":/mini/miniguerrero2.png"),"Guerrero");
+    ui->seleccion6->addItem(QIcon(":/mini/minimago2.png"),"Mago");
+    ui->seleccion6->addItem(QIcon(":/mini/miniclerigo2.png"),"Clérigo");
 
 
     // Para cambiar el tamaño de la letra de las opciones del comboBox:

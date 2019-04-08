@@ -3,6 +3,8 @@
 #include "personajes.h"
 #include <QVector>
 #include <QDebug>
+#include <QThread>
+#include <QApplication>
 
 QString porcentaje, formatobarravida, formatobarrapoder,nequi1[3],nequi2[3];
 int pj1=0,pj2=0,turno=1;
@@ -77,7 +79,16 @@ void ScreenCombate::on_usar1_clicked()
     if (turno==1){
         if (equipo1[pj1]->PP>=equipo1[pj1]->costes[ui->comboBoxu1->currentIndex()]){
             equipo1[pj1]->Habilidad(ui->comboBoxu1->currentIndex(), equipo2[pj2].get(),equipo1);
-            if (equipo2[pj2]->HP<0){
+            //La animación de combate
+            ui->picpersonaje1->setPixmap(equipo1[pj1]->im_ataque1);
+            ui->mensaje1->setText(nequi1[pj1]+" usó "+ui->comboBoxu1->currentText());
+            qApp->processEvents();
+            //Aquí va el delay
+            int i=0;
+            while(i<500000000){i++;}
+            //Fin del delay
+            ui->picpersonaje1->setPixmap(equipo1[pj1]->im_normal1);
+            if (equipo2[pj2]->HP<=0){
                 equipo2[pj2]->HP=0;
                 nequi2[pj2]=ui->comboBoxc2->itemText(pj2)+" (D)";
                 ui->comboBoxc2->setItemText(pj2,nequi2[pj2]);
@@ -104,9 +115,20 @@ void ScreenCombate::on_usar1_clicked()
 void ScreenCombate::on_usar2_clicked()
 {
     if (turno==2){
-            if (equipo2[pj2]->PP>=equipo2[pj2]->costes[ui->comboBoxu2->currentIndex()]){
+        if (equipo2[pj2]->PP>=equipo2[pj2]->costes[ui->comboBoxu2->currentIndex()]){
             equipo2[pj2]->Habilidad(ui->comboBoxu2->currentIndex(), equipo1[pj1].get(),equipo2);
-            if (equipo1[pj1]->HP<0){
+
+            //La animación de combate
+            ui->picpersonaje2->setPixmap(equipo2[pj2]->im_ataque2);
+            ui->mensaje1->setText(nequi2[pj2]+" usó "+ui->comboBoxu2->currentText());
+            qApp->processEvents();
+            //Aquí va el delay
+            int i=0;
+            while(i<500000000){i++;}
+            //Fin del delay
+            ui->picpersonaje2->setPixmap(equipo2[pj2]->im_normal2);
+
+            if (equipo1[pj1]->HP<=0){
                 equipo1[pj1]->HP=0;
                 nequi1[pj1]=ui->comboBoxc1->itemText(pj1)+" (D)";
                 ui->comboBoxc1->setItemText(pj1,nequi1[pj1]);
@@ -152,6 +174,9 @@ void ScreenCombate::ActualizarPantalla(){
     porcentaje = QString::number(equipo2[pj2]->PP_max,'g',20);
     formatobarrapoder = "%v/"+porcentaje;
     ui->barrapoder2->setFormat(formatobarrapoder);
+
+    ui->picpersonaje1->setPixmap(equipo1[pj1]->im_normal1);
+    ui->picpersonaje2->setPixmap(equipo2[pj2]->im_normal2);
 }
 
 void ScreenCombate::ActualizarMenu(){

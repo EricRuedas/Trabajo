@@ -24,8 +24,10 @@ public:
     int def_f=0;
     int def_m=0;
     QComboBox hab;
-    QPixmap im_normal;
-    QPixmap im_ataque;
+    QPixmap im_normal1;
+    QPixmap im_normal2;
+    QPixmap im_ataque1;
+    QPixmap im_ataque2;
     QVector<int> costes;
 };
 
@@ -57,3 +59,4 @@ public:
 };
 
 #endif // PERSONAJES_H
+

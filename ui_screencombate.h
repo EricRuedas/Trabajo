@@ -67,7 +67,7 @@ public:
         barrapoder1 = new QProgressBar(ScreenCombate);
         barrapoder1->setObjectName(QStringLiteral("barrapoder1"));
         barrapoder1->setGeometry(QRect(210, 10, 81, 23));
-        barrapoder1->setMaximum(200);
+        barrapoder1->setMaximum(10);
         barrapoder1->setValue(5);
         cambiar1 = new QPushButton(ScreenCombate);
         cambiar1->setObjectName(QStringLiteral("cambiar1"));
@@ -76,11 +76,11 @@ public:
         barravida1->setObjectName(QStringLiteral("barravida1"));
         barravida1->setGeometry(QRect(40, 10, 151, 23));
         barravida1->setStyleSheet(QStringLiteral(""));
-        barravida1->setMaximum(200);
+        barravida1->setMaximum(100);
         barravida1->setValue(50);
         picpersonaje1 = new QLabel(ScreenCombate);
         picpersonaje1->setObjectName(QStringLiteral("picpersonaje1"));
-        picpersonaje1->setGeometry(QRect(60, 80, 241, 331));
+        picpersonaje1->setGeometry(QRect(60, 80, 331, 331));
         usar1 = new QPushButton(ScreenCombate);
         usar1->setObjectName(QStringLiteral("usar1"));
         usar1->setGeometry(QRect(320, 420, 121, 41));
@@ -90,11 +90,11 @@ public:
         barrapoder2 = new QProgressBar(ScreenCombate);
         barrapoder2->setObjectName(QStringLiteral("barrapoder2"));
         barrapoder2->setGeometry(QRect(720, 10, 81, 23));
-        barrapoder2->setMaximum(200);
+        barrapoder2->setMaximum(10);
         barrapoder2->setValue(5);
         picpersonaje2 = new QLabel(ScreenCombate);
         picpersonaje2->setObjectName(QStringLiteral("picpersonaje2"));
-        picpersonaje2->setGeometry(QRect(700, 70, 241, 331));
+        picpersonaje2->setGeometry(QRect(640, 70, 301, 331));
         fusion2 = new QPushButton(ScreenCombate);
         fusion2->setObjectName(QStringLiteral("fusion2"));
         fusion2->setGeometry(QRect(840, 420, 121, 41));
@@ -107,7 +107,7 @@ public:
         barravida2 = new QProgressBar(ScreenCombate);
         barravida2->setObjectName(QStringLiteral("barravida2"));
         barravida2->setGeometry(QRect(820, 10, 151, 23));
-        barravida2->setMaximum(200);
+        barravida2->setMaximum(100);
         barravida2->setValue(50);
         cambiar2 = new QPushButton(ScreenCombate);
         cambiar2->setObjectName(QStringLiteral("cambiar2"));

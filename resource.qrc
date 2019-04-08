@@ -1,6 +1,22 @@
 <RCC>
     <qresource prefix="/mini">
+        <file>guerrero1_ataque.png</file>
+        <file>guerrero1_quieto.png</file>
+        <file>guerrero2_ataque.png</file>
+        <file>guerrero2_quieto.png</file>
+        <file>mago1_ataque.png</file>
+        <file>mago1_quieto.png</file>
+        <file>clerigo1_quieto.png</file>
+        <file>mago2_ataque.png</file>
+        <file>mago2_quieto.png</file>
+        <file>clerigo2_quieto.png</file>
+        <file>clerigo1_ataque.png</file>
+        <file>clerigo2_ataque.png</file>
+        <file>miniclerigo2.png</file>
+        <file>miniguerrero2.png</file>
+        <file>minimago2.png</file>
         <file>minimago.png</file>
+        <file>miniclerigo.png</file>
         <file>miniguerrero.png</file>
     </qresource>
 </RCC>
