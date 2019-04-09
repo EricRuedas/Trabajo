@@ -5,6 +5,7 @@
 #include "personajes.h"
 #include <QVector>
 #include <memory>
+#include <QString>
 //Se incluyen para hacer vectores con punteros inteligentes
 
 namespace Ui {
@@ -20,6 +21,12 @@ public:
     ~ScreenCombate();
     QVector<std::shared_ptr<Personaje>> equipo1;
     QVector<std::shared_ptr<Personaje>> equipo2;
+
+
+public slots:
+
+    void ActualizarEquipo(QVector<int>);
+
 
 private slots:
 
@@ -38,6 +45,7 @@ private slots:
     void on_cambiar2_clicked();
 
     int ComprobarEquipo(QVector<std::shared_ptr<Personaje>>);
+
 
 private:
     Ui::ScreenCombate *ui;

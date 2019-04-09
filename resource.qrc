@@ -18,5 +18,6 @@
         <file>minimago.png</file>
         <file>miniclerigo.png</file>
         <file>miniguerrero.png</file>
+        <file>fondo.jpeg</file>
     </qresource>
 </RCC>

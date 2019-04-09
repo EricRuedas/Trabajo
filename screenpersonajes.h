@@ -20,6 +20,7 @@ private slots:
 
     void on_volvermenubutton_clicked();
 
+
 private:
     Ui::screenpersonajes *ui;
 };

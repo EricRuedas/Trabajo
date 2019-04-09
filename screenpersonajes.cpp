@@ -1,6 +1,9 @@
 #include "screenpersonajes.h"
 #include "ui_screenpersonajes.h"
 #include "screencombate.h"
+#include "QVector"
+#include "QDebug"
+
 
 screenpersonajes::screenpersonajes(QWidget *parent) :
     QDialog(parent),
@@ -37,7 +40,6 @@ screenpersonajes::screenpersonajes(QWidget *parent) :
     ui->seleccion6->addItem(QIcon(":/mini/minimago2.png"),"Mago");
     ui->seleccion6->addItem(QIcon(":/mini/miniclerigo2.png"),"Clérigo");
 
-
     // Para cambiar el tamaño de la letra de las opciones del comboBox:
 
     QFont font;
@@ -58,11 +60,21 @@ screenpersonajes::~screenpersonajes()
 void screenpersonajes::on_startcombatbutton_clicked()
 {
     ScreenCombate c;
+    QVector<int> pjs;
+    pjs.push_back(ui->seleccion1->currentIndex());
+    pjs.push_back(ui->seleccion2->currentIndex());
+    pjs.push_back(ui->seleccion3->currentIndex());
+    pjs.push_back(ui->seleccion4->currentIndex());
+    pjs.push_back(ui->seleccion5->currentIndex());
+    pjs.push_back(ui->seleccion6->currentIndex());
+    c.ActualizarEquipo(pjs);
     c.setModal(true);
     c.exec();
+    close();
 }
 
 void screenpersonajes::on_volvermenubutton_clicked()
 {
     close();
 }
+

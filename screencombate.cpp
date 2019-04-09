@@ -1,10 +1,12 @@
 #include "screencombate.h"
 #include "ui_screencombate.h"
 #include "personajes.h"
+#include "screenpersonajes.h"
+
 #include <QVector>
 #include <QDebug>
-#include <QThread>
 #include <QApplication>
+#include <QThread>
 
 QString porcentaje, formatobarravida, formatobarrapoder,nequi1[3],nequi2[3];
 int pj1=0,pj2=0,turno=1;
@@ -15,13 +17,10 @@ ScreenCombate::ScreenCombate(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    // Para las imagenes de los personajes:
+    // Para el fondo de batalla:
 
-    QPixmap pic1("C:/Users/ericr/Downloads/4ºGRADOUNIVERSIDAD/InformaticaAvanzada/TrabajoFinal/mago1_quieto.png");
-    ui->picpersonaje1->setPixmap(pic1);
-
-    QPixmap pic2("C:/Users/ericr/Downloads/4ºGRADOUNIVERSIDAD/InformaticaAvanzada/TrabajoFinal/mago2_ataque.png");
-    ui->picpersonaje2->setPixmap(pic2);
+    QPixmap fondo(":/mini/fondo.jpeg");
+    ui->picfondo->setPixmap(fondo);
 
 
     // Para cambiar los colores y diseños de los QProgressBar:
@@ -83,10 +82,12 @@ void ScreenCombate::on_usar1_clicked()
             ui->picpersonaje1->setPixmap(equipo1[pj1]->im_ataque1);
             ui->mensaje1->setText(nequi1[pj1]+" usó "+ui->comboBoxu1->currentText());
             qApp->processEvents();
+
             //Aquí va el delay
-            int i=0;
-            while(i<500000000){i++;}
+            QThread Q;
+            Q.msleep(1500);
             //Fin del delay
+
             ui->picpersonaje1->setPixmap(equipo1[pj1]->im_normal1);
             if (equipo2[pj2]->HP<=0){
                 equipo2[pj2]->HP=0;
@@ -121,11 +122,13 @@ void ScreenCombate::on_usar2_clicked()
             //La animación de combate
             ui->picpersonaje2->setPixmap(equipo2[pj2]->im_ataque2);
             ui->mensaje1->setText(nequi2[pj2]+" usó "+ui->comboBoxu2->currentText());
-            qApp->processEvents();
+            qApp->processEvents(); //Actualizar las imágenes
+
             //Aquí va el delay
-            int i=0;
-            while(i<500000000){i++;}
+            QThread Q;
+            Q.msleep(1500);
             //Fin del delay
+
             ui->picpersonaje2->setPixmap(equipo2[pj2]->im_normal2);
 
             if (equipo1[pj1]->HP<=0){
@@ -248,4 +251,49 @@ int ScreenCombate::ComprobarEquipo(QVector<std::shared_ptr<Personaje>> team){
         if(team[i]->HP>0){v=1;}
     }
     return v;
+}
+
+void ScreenCombate::ActualizarEquipo(QVector<int> pjs){
+    equipo1.clear();
+    equipo2.clear();
+    int g=1,m=1,c=1;
+    for (int i=0; i<3; i++){
+        if (pjs[i]==0){
+            equipo1.push_back(std::make_shared<Guerrero>());
+            nequi1[i]="Guerrero "+QString::number(g);
+            g++;
+        }
+        else if (pjs[i]==1){
+            equipo1.push_back(std::make_shared<Mago>());
+            nequi1[i]="Mago "+QString::number(m);
+            m++;
+        }
+        else {
+            equipo1.push_back(std::make_shared<Clerigo>());
+            nequi1[i]="Clérigo "+QString::number(c);
+            c++;
+        }
+
+    }
+
+    for (int i=3; i<6; i++){
+        if (pjs[i]==0){
+            equipo2.push_back(std::make_shared<Guerrero>());
+            nequi2[i-3]="Guerrero "+QString::number(g);
+            g++;
+        }
+        else if (pjs[i]==1){
+            equipo2.push_back(std::make_shared<Mago>());
+            nequi2[i-3]="Mago "+QString::number(m);
+            m++;
+        }
+        else {
+            equipo2.push_back(std::make_shared<Clerigo>());
+            nequi2[i-3]="Clérigo "+QString::number(c);
+            c++;
+        }
+    }
+
+    ActualizarPantalla();
+    ActualizarMenu();
 }
