@@ -37,6 +37,7 @@ public:
     ~Guerrero();
     void Espadazo(Personaje*);
     void Aumento();
+    void EspadazoFuerte(Personaje*);
     virtual void Habilidad(int,Personaje*,QVector<std::shared_ptr<Personaje>>) override;
 };
 
@@ -46,6 +47,7 @@ public:
     ~Mago();
     void Hechizo(Personaje*);
     void HechizoGordo(Personaje*);
+    void PocionAumento();
     virtual void Habilidad(int,Personaje*,QVector<std::shared_ptr<Personaje>>) override;
 };
 
@@ -55,6 +57,7 @@ public:
     ~Clerigo();
     void Bastonazo(Personaje*);
     void Curar(QVector<std::shared_ptr<Personaje>>);
+    void RayoDivino(Personaje*);
     virtual void Habilidad(int,Personaje*,QVector<std::shared_ptr<Personaje>>) override;
 };
 

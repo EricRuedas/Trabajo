@@ -28,8 +28,10 @@ Guerrero::Guerrero():Personaje(){
     def_m=10;
     costes.push_back(0);
     costes.push_back(15);
+    costes.push_back(20);
     hab.addItem("Espadazo (0 PH)");
     hab.addItem("Aumento (15 PH)");
+    hab.addItem("Espadazo Fuerte (20 PH)");
     QPixmap pic1(":/mini/guerrero1_quieto.png");
     im_normal1=pic1;
     QPixmap pic2(":/mini/guerrero1_ataque.png");
@@ -52,6 +54,12 @@ void Guerrero::Aumento(){
     this->PP=this->PP-15;
 }
 
+void Guerrero::EspadazoFuerte(Personaje *en){
+    en->HP=en->HP-(this->at_f*1.3-en->def_f);
+    if (this->at_f==60) {this->at_f=30;}
+    this->PP=this->PP-20;
+}
+
 void Guerrero::Habilidad(int n,Personaje *en,QVector<std::shared_ptr<Personaje>> team){
     switch (n) {
     case 0:
@@ -59,6 +67,9 @@ void Guerrero::Habilidad(int n,Personaje *en,QVector<std::shared_ptr<Personaje>>
         break;
     case 1:
         this->Aumento();
+        break;
+    case 2:
+        this->EspadazoFuerte(en);
         break;
     default:
         break;
@@ -75,8 +86,10 @@ Mago::Mago():Personaje(){
     def_m=15;
     costes.push_back(0);
     costes.push_back(20);
+    costes.push_back(25);
     hab.addItem("Hechizo (0 PH)");
     hab.addItem("Hechizo gordo(20 PH)");
+    hab.addItem("Poción de aumento (25 PH)");
     QPixmap pic1(":/mini/mago1_quieto.png");
     im_normal1=pic1;
     QPixmap pic2(":/mini/mago1_ataque.png");
@@ -91,11 +104,18 @@ Mago::~Mago(){}
 
 void Mago::Hechizo(Personaje *en){
     en->HP=en->HP-(this->at_m-en->def_m);
+    if (this->at_m==65) {this->at_m=40;}
 }
 
 void Mago::HechizoGordo(Personaje *en){
     en->HP=en->HP-((this->at_m*1.3)-en->def_m);
+    if (this->at_m==65) {this->at_m=40;}
     this->PP=this->PP-20;
+}
+
+void Mago::PocionAumento(){
+    this->at_m=65;
+    this->PP=this->PP-25;
 }
 
 void Mago::Habilidad(int n,Personaje *en,QVector<std::shared_ptr<Personaje>> team){
@@ -105,6 +125,9 @@ void Mago::Habilidad(int n,Personaje *en,QVector<std::shared_ptr<Personaje>> tea
         break;
     case 1:
         this->HechizoGordo(en);
+        break;
+    case 2:
+        this->PocionAumento();
         break;
     default:
         break;
@@ -122,8 +145,10 @@ Clerigo::Clerigo():Personaje(){
     def_m=30;
     costes.push_back(0);
     costes.push_back(20);
+    costes.push_back(10);
     hab.addItem("Bastonazo (0 PH)");
     hab.addItem("Curar (20 PH)");
+    hab.addItem("Rayo divino (10 PH)");
     QPixmap pic1(":/mini/clerigo1_quieto.png");
     im_normal1=pic1;
     QPixmap pic2(":/mini/clerigo1_ataque.png");
@@ -163,7 +188,15 @@ void Clerigo::Habilidad(int n,Personaje *en,QVector<std::shared_ptr<Personaje>> 
     case 1:
         this->Curar(team);
         break;
+    case 2:
+        this -> RayoDivino(en);
+        break;
     default:
         break;
     }
+}
+
+void Clerigo::RayoDivino(Personaje *en){
+    en->HP=en->HP-(this->at_m-en->def_m);
+    this->PP=this->PP-10;
 }
