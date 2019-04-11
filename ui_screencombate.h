@@ -47,6 +47,10 @@ public:
     QComboBox *comboBoxc1;
     QComboBox *comboBoxc2;
     QLabel *picfondo;
+    QProgressBar *fusionbarra;
+    QProgressBar *fusionbarra2;
+    QLabel *fusiontext1;
+    QLabel *fusiontext2;
 
     void setupUi(QDialog *ScreenCombate)
     {
@@ -147,6 +151,31 @@ public:
         picfondo = new QLabel(ScreenCombate);
         picfondo->setObjectName(QStringLiteral("picfondo"));
         picfondo->setGeometry(QRect(20, -10, 1014, 630));
+        fusionbarra = new QProgressBar(ScreenCombate);
+        fusionbarra->setObjectName(QStringLiteral("fusionbarra"));
+        fusionbarra->setGeometry(QRect(320, 10, 91, 23));
+        fusionbarra->setMaximum(3);
+        fusionbarra->setValue(0);
+        fusionbarra->setTextVisible(false);
+        fusionbarra2 = new QProgressBar(ScreenCombate);
+        fusionbarra2->setObjectName(QStringLiteral("fusionbarra2"));
+        fusionbarra2->setGeometry(QRect(590, 10, 91, 23));
+        fusionbarra2->setMaximum(3);
+        fusionbarra2->setValue(0);
+        fusionbarra2->setTextVisible(false);
+        fusiontext1 = new QLabel(ScreenCombate);
+        fusiontext1->setObjectName(QStringLiteral("fusiontext1"));
+        fusiontext1->setGeometry(QRect(300, 40, 141, 21));
+        QFont font1;
+        font1.setFamily(QStringLiteral("HoloLens MDL2 Assets"));
+        font1.setPointSize(10);
+        font1.setBold(true);
+        font1.setWeight(75);
+        fusiontext1->setFont(font1);
+        fusiontext2 = new QLabel(ScreenCombate);
+        fusiontext2->setObjectName(QStringLiteral("fusiontext2"));
+        fusiontext2->setGeometry(QRect(560, 40, 141, 21));
+        fusiontext2->setFont(font1);
         picfondo->raise();
         fusion1->raise();
         mensaje1->raise();
@@ -168,6 +197,10 @@ public:
         usar2->raise();
         comboBoxc1->raise();
         comboBoxc2->raise();
+        fusionbarra->raise();
+        fusionbarra2->raise();
+        fusiontext1->raise();
+        fusiontext2->raise();
 
         retranslateUi(ScreenCombate);
 
@@ -192,6 +225,8 @@ public:
         cambiar2->setText(QApplication::translate("ScreenCombate", "CAMBIAR", Q_NULLPTR));
         usar2->setText(QApplication::translate("ScreenCombate", "USAR", Q_NULLPTR));
         picfondo->setText(QString());
+        fusiontext1->setText(QString());
+        fusiontext2->setText(QString());
     } // retranslateUi
 
 };

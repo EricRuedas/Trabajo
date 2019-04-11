@@ -34,6 +34,7 @@ public:
     QLabel *label;
     QLabel *label_2;
     QPushButton *RulesButton;
+    QPushButton *pushButton;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -72,6 +73,9 @@ public:
         RulesButton->setObjectName(QStringLiteral("RulesButton"));
         RulesButton->setGeometry(QRect(120, 222, 141, 31));
         RulesButton->setStyleSheet(QStringLiteral("background-color: rgb(170, 85, 127);"));
+        pushButton = new QPushButton(centralWidget);
+        pushButton->setObjectName(QStringLiteral("pushButton"));
+        pushButton->setGeometry(QRect(310, 70, 75, 23));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -98,6 +102,7 @@ public:
         label->setText(QApplication::translate("MainWindow", "BIENVENIDO AL MEJOR JUEGO DEL MUNDO.", Q_NULLPTR));
         label_2->setText(QApplication::translate("MainWindow", "DISFR\303\232TALO SI QUIERES....", Q_NULLPTR));
         RulesButton->setText(QApplication::translate("MainWindow", "REGLAS DEL JUEGO", Q_NULLPTR));
+        pushButton->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
     } // retranslateUi
 
 };

@@ -9,7 +9,7 @@
 #include <QThread>
 
 QString porcentaje, formatobarravida, formatobarrapoder,nequi1[3],nequi2[3];
-int pj1=0,pj2=0,turno=1;
+int pj1=0,pj2=0,turno=1,contador=0, contador2=0;
 
 ScreenCombate::ScreenCombate(QWidget *parent) :
     QDialog(parent),
@@ -89,6 +89,8 @@ void ScreenCombate::on_usar1_clicked()
             //Fin del delay
 
             ui->picpersonaje1->setPixmap(equipo1[pj1]->im_normal1);
+            contador=contador+1;
+
             if (equipo2[pj2]->HP<=0){
                 equipo2[pj2]->HP=0;
                 nequi2[pj2]=ui->comboBoxc2->itemText(pj2)+" (D)";
@@ -104,6 +106,7 @@ void ScreenCombate::on_usar1_clicked()
             else if(equipo2[pj2]->HP==0){
                 turno=4;
                 ui->mensaje1->setText("Jugador 2, cambie a otro personaje");
+                contador2=0;
             }else{
                 turno=2;
                 ui->mensaje1->setText("Turno del jugador 2");
@@ -111,6 +114,8 @@ void ScreenCombate::on_usar1_clicked()
         }
         else{ui->mensaje1->setText("Jugador 1, no tienes suficientes PH para usar eso");}
     }
+
+    ActualizarPantalla();
 }
 
 void ScreenCombate::on_usar2_clicked()
@@ -130,6 +135,7 @@ void ScreenCombate::on_usar2_clicked()
             //Fin del delay
 
             ui->picpersonaje2->setPixmap(equipo2[pj2]->im_normal2);
+            contador2=contador2+1;
 
             if (equipo1[pj1]->HP<=0){
                 equipo1[pj1]->HP=0;
@@ -146,6 +152,7 @@ void ScreenCombate::on_usar2_clicked()
             else if(equipo1[pj1]->HP==0){
                 turno=3;
                 ui->mensaje1->setText("Jugador 1, cambie a otro personaje");
+                contador=0;
             }else{
                 turno=1;
                 ui->mensaje1->setText("Turno del jugador 1");
@@ -153,6 +160,8 @@ void ScreenCombate::on_usar2_clicked()
         }
         else{ui->mensaje1->setText("Jugador 2, no tienes suficientes PH para usar eso");}
     }
+
+    ActualizarPantalla();
 }
 
 void ScreenCombate::ActualizarPantalla(){
@@ -180,6 +189,61 @@ void ScreenCombate::ActualizarPantalla(){
 
     ui->picpersonaje1->setPixmap(equipo1[pj1]->im_normal1);
     ui->picpersonaje2->setPixmap(equipo2[pj2]->im_normal2);
+
+    // Actualización de la barray botón de fusión:
+
+    if (contador==0){
+        ui->fusionbarra->setValue(0);
+        ui->fusiontext1->setText("");
+        ui->fusion1->setEnabled(false);
+    }
+    else if (contador==1){
+        QString st3 = QString ("QProgressBar::chunk {""background-color: #ff33dd;""}");
+        st3.append("QProgressBar {""border: 1px solid grey;""border-radius: 2px;""text-align: center;""background: #eeeeee;""}");
+        ui->fusionbarra->setStyleSheet(st3);
+        ui->fusionbarra->setValue(1);
+    }
+    else if (contador==2){
+        QString st4 = QString ("QProgressBar::chunk {""background-color: #ff336B;""}");
+        st4.append("QProgressBar {""border: 1px solid grey;""border-radius: 2px;""text-align: center;""background: #eeeeee;""}");
+        ui->fusionbarra->setStyleSheet(st4);
+        ui->fusionbarra->setValue(2);
+    }
+    else {
+        QString st5 = QString ("QProgressBar::chunk {""background-color: #ff3333;""}");
+        st5.append("QProgressBar {""border: 1px solid grey;""border-radius: 2px;""text-align: center;""background: #eeeeee;""}");
+        ui->fusionbarra->setStyleSheet(st5);
+        ui->fusionbarra->setValue(3);
+        ui->fusiontext1->setText("¡¡FUSIÓN DISPONIBLE!!");
+        ui->fusion1->setEnabled(true);
+    }
+
+    if (contador2==0){
+        ui->fusionbarra2->setValue(0);
+        ui->fusiontext2->setText("");
+        ui->fusion2->setEnabled(false);
+
+    }
+    else if (contador2==1){
+        QString st3 = QString ("QProgressBar::chunk {""background-color: #ff33dd;""}");
+        st3.append("QProgressBar {""border: 1px solid grey;""border-radius: 2px;""text-align: center;""background: #eeeeee;""}");
+        ui->fusionbarra2->setStyleSheet(st3);
+        ui->fusionbarra2->setValue(1);
+    }
+    else if (contador2==2){
+        QString st4 = QString ("QProgressBar::chunk {""background-color: #ff336B;""}");
+        st4.append("QProgressBar {""border: 1px solid grey;""border-radius: 2px;""text-align: center;""background: #eeeeee;""}");
+        ui->fusionbarra2->setStyleSheet(st4);
+        ui->fusionbarra2->setValue(2);
+    }
+    else {
+        QString st5 = QString ("QProgressBar::chunk {""background-color: #ff3333;""}");
+        st5.append("QProgressBar {""border: 1px solid grey;""border-radius: 2px;""text-align: center;""background: #eeeeee;""}");
+        ui->fusionbarra2->setStyleSheet(st5);
+        ui->fusionbarra2->setValue(3);
+        ui->fusiontext2->setText("¡¡FUSIÓN DISPONIBLE!!");
+        ui->fusion2->setEnabled(true);
+    }
 }
 
 void ScreenCombate::ActualizarMenu(){
@@ -210,10 +274,11 @@ void ScreenCombate::on_cambiar1_clicked()
         int i=ui->comboBoxc1->currentIndex();
         if(i!=pj1 && equipo1[i]->HP>0){
             pj1=i;
-            ActualizarMenu();
-            ActualizarPantalla();
             if(turno==1){
                 turno=2;
+                contador=0;
+                ActualizarMenu();
+                ActualizarPantalla();
                 ui->mensaje1->setText("Turno del jugador 2");
             }
             else{
@@ -231,10 +296,11 @@ void ScreenCombate::on_cambiar2_clicked()
         int i=ui->comboBoxc2->currentIndex();
         if(i!=pj2 && equipo2[i]->HP>0){
             pj2=i;
-            ActualizarMenu();
-            ActualizarPantalla();
             if(turno==2){
                 turno=1;
+                contador2=0;
+                ActualizarMenu();
+                ActualizarPantalla();
                 ui->mensaje1->setText("Turno del jugador 1");
             }
             else{

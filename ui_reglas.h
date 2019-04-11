@@ -16,7 +16,9 @@
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QScrollArea>
 #include <QtWidgets/QTextBrowser>
+#include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
 
@@ -24,6 +26,8 @@ class Ui_reglas
 {
 public:
     QPushButton *pushButton;
+    QScrollArea *scrollArea;
+    QWidget *scrollAreaWidgetContents_2;
     QTextBrowser *textBrowser;
 
     void setupUi(QDialog *reglas)
@@ -34,9 +38,19 @@ public:
         pushButton = new QPushButton(reglas);
         pushButton->setObjectName(QStringLiteral("pushButton"));
         pushButton->setGeometry(QRect(120, 230, 131, 51));
-        textBrowser = new QTextBrowser(reglas);
+        scrollArea = new QScrollArea(reglas);
+        scrollArea->setObjectName(QStringLiteral("scrollArea"));
+        scrollArea->setGeometry(QRect(40, 10, 321, 211));
+        scrollArea->setWidgetResizable(true);
+        scrollAreaWidgetContents_2 = new QWidget();
+        scrollAreaWidgetContents_2->setObjectName(QStringLiteral("scrollAreaWidgetContents_2"));
+        scrollAreaWidgetContents_2->setGeometry(QRect(0, 0, 319, 209));
+        textBrowser = new QTextBrowser(scrollAreaWidgetContents_2);
         textBrowser->setObjectName(QStringLiteral("textBrowser"));
-        textBrowser->setGeometry(QRect(40, 10, 321, 211));
+        textBrowser->setGeometry(QRect(0, 0, 321, 211));
+        scrollArea->setWidget(scrollAreaWidgetContents_2);
+        scrollArea->raise();
+        pushButton->raise();
 
         retranslateUi(reglas);
 
@@ -55,7 +69,15 @@ public:
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">- Guerrero, el cu\303\241l tiene un alto ataque y defensa pero unas bajas caracter\303\255sticas de ataque y defensa m\303\241gica.</span></p>\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
                         "right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">- Mago, el cu\303\241l tiene un alt\303\255simo ataque m\303\241gico y unas bajas defensas, tanto f\303\255sica c\303\263mo m\303\241gica.</span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">- Cl\303\251rigo, el cu\303\241l tiene una alt\303\255sima defensa m\303\241gica y unas bajas caracter\303\255sticas f\303\255sicas. Adem\303\241s, tiene unos ataques de soporte muy buenos.</span></p></body></html>", Q_NULLPTR));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">- Cl\303\251rigo, el cu\303\241l tiene una alt\303\255sima defensa m\303\241gica y unas bajas caracter\303\255sticas f\303\255sicas. Adem\303\241s, tiene unos ataques de soporte muy buenos.</span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">a</span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">a</span></p>\n"
+"<p align=\"center\" style=\" margin-"
+                        "top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">a</span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">a</span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">aa</span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">a</span></p>\n"
+"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p></body></html>", Q_NULLPTR));
     } // retranslateUi
 
 };
