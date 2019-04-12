@@ -20,8 +20,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_ScreenCombate_t {
-    QByteArrayData data[13];
-    char stringdata0[223];
+    QByteArrayData data[16];
+    char stringdata0[279];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -42,7 +42,10 @@ QT_MOC_LITERAL(8, 115, 14), // "ActualizarMenu"
 QT_MOC_LITERAL(9, 130, 19), // "on_cambiar1_clicked"
 QT_MOC_LITERAL(10, 150, 19), // "on_cambiar2_clicked"
 QT_MOC_LITERAL(11, 170, 15), // "ComprobarEquipo"
-QT_MOC_LITERAL(12, 186, 36) // "QVector<std::shared_ptr<Perso..."
+QT_MOC_LITERAL(12, 186, 36), // "QVector<std::shared_ptr<Perso..."
+QT_MOC_LITERAL(13, 223, 17), // "ActualizarNombres"
+QT_MOC_LITERAL(14, 241, 18), // "on_fusion1_clicked"
+QT_MOC_LITERAL(15, 260, 18) // "on_fusion2_clicked"
 
     },
     "ScreenCombate\0ActualizarEquipo\0\0"
@@ -50,7 +53,9 @@ QT_MOC_LITERAL(12, 186, 36) // "QVector<std::shared_ptr<Perso..."
     "on_usar1_clicked\0on_usar2_clicked\0"
     "ActualizarPantalla\0ActualizarMenu\0"
     "on_cambiar1_clicked\0on_cambiar2_clicked\0"
-    "ComprobarEquipo\0QVector<std::shared_ptr<Personaje> >"
+    "ComprobarEquipo\0QVector<std::shared_ptr<Personaje> >\0"
+    "ActualizarNombres\0on_fusion1_clicked\0"
+    "on_fusion2_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -60,7 +65,7 @@ static const uint qt_meta_data_ScreenCombate[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       9,   14, // methods
+      12,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -68,15 +73,18 @@ static const uint qt_meta_data_ScreenCombate[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    1,   59,    2, 0x0a /* Public */,
-       4,    0,   62,    2, 0x08 /* Private */,
-       5,    0,   63,    2, 0x08 /* Private */,
-       6,    0,   64,    2, 0x08 /* Private */,
-       7,    0,   65,    2, 0x08 /* Private */,
-       8,    0,   66,    2, 0x08 /* Private */,
-       9,    0,   67,    2, 0x08 /* Private */,
-      10,    0,   68,    2, 0x08 /* Private */,
-      11,    1,   69,    2, 0x08 /* Private */,
+       1,    1,   74,    2, 0x0a /* Public */,
+       4,    0,   77,    2, 0x08 /* Private */,
+       5,    0,   78,    2, 0x08 /* Private */,
+       6,    0,   79,    2, 0x08 /* Private */,
+       7,    0,   80,    2, 0x08 /* Private */,
+       8,    0,   81,    2, 0x08 /* Private */,
+       9,    0,   82,    2, 0x08 /* Private */,
+      10,    0,   83,    2, 0x08 /* Private */,
+      11,    1,   84,    2, 0x08 /* Private */,
+      13,    1,   87,    2, 0x08 /* Private */,
+      14,    0,   90,    2, 0x08 /* Private */,
+      15,    0,   91,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void, 0x80000000 | 3,    2,
@@ -88,6 +96,9 @@ static const uint qt_meta_data_ScreenCombate[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Int, 0x80000000 | 12,    2,
+    QMetaType::Void, QMetaType::Int,    2,
+    QMetaType::Void,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -108,6 +119,9 @@ void ScreenCombate::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         case 7: _t->on_cambiar2_clicked(); break;
         case 8: { int _r = _t->ComprobarEquipo((*reinterpret_cast< QVector<std::shared_ptr<Personaje> >(*)>(_a[1])));
             if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
+        case 9: _t->ActualizarNombres((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 10: _t->on_fusion1_clicked(); break;
+        case 11: _t->on_fusion2_clicked(); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
@@ -149,13 +163,13 @@ int ScreenCombate::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 9)
+        if (_id < 12)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 9;
+        _id -= 12;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 9)
+        if (_id < 12)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 9;
+        _id -= 12;
     }
     return _id;
 }

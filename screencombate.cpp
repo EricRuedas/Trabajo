@@ -9,7 +9,7 @@
 #include <QThread>
 
 QString porcentaje, formatobarravida, formatobarrapoder,nequi1[3],nequi2[3];
-int pj1=0,pj2=0,turno=1,contador=0, contador2=0;
+int pj1=0,pj2=0,turno=1,contador=0, contador2=0, fus=0, fus2=0;
 
 ScreenCombate::ScreenCombate(QWidget *parent) :
     QDialog(parent),
@@ -70,6 +70,7 @@ ScreenCombate::~ScreenCombate()
 
 void ScreenCombate::on_Salir_clicked()
 {
+    contador=0; contador2=0;
     close();
 }
 
@@ -190,20 +191,20 @@ void ScreenCombate::ActualizarPantalla(){
     ui->picpersonaje1->setPixmap(equipo1[pj1]->im_normal1);
     ui->picpersonaje2->setPixmap(equipo2[pj2]->im_normal2);
 
-    // Actualización de la barray botón de fusión:
+    // Actualización de la barra y botón de fusión:
 
-    if (contador==0){
+    if (contador==0 || fus==1){
         ui->fusionbarra->setValue(0);
         ui->fusiontext1->setText("");
         ui->fusion1->setEnabled(false);
     }
-    else if (contador==1){
+    else if (contador==1 && fus==0){
         QString st3 = QString ("QProgressBar::chunk {""background-color: #ff33dd;""}");
         st3.append("QProgressBar {""border: 1px solid grey;""border-radius: 2px;""text-align: center;""background: #eeeeee;""}");
         ui->fusionbarra->setStyleSheet(st3);
         ui->fusionbarra->setValue(1);
     }
-    else if (contador==2){
+    else if (contador==2 && fus==0){
         QString st4 = QString ("QProgressBar::chunk {""background-color: #ff336B;""}");
         st4.append("QProgressBar {""border: 1px solid grey;""border-radius: 2px;""text-align: center;""background: #eeeeee;""}");
         ui->fusionbarra->setStyleSheet(st4);
@@ -218,19 +219,19 @@ void ScreenCombate::ActualizarPantalla(){
         ui->fusion1->setEnabled(true);
     }
 
-    if (contador2==0){
+    if (contador2==0 || fus2==1){
         ui->fusionbarra2->setValue(0);
         ui->fusiontext2->setText("");
         ui->fusion2->setEnabled(false);
 
     }
-    else if (contador2==1){
+    else if (contador2==1 && fus2==0){
         QString st3 = QString ("QProgressBar::chunk {""background-color: #ff33dd;""}");
         st3.append("QProgressBar {""border: 1px solid grey;""border-radius: 2px;""text-align: center;""background: #eeeeee;""}");
         ui->fusionbarra2->setStyleSheet(st3);
         ui->fusionbarra2->setValue(1);
     }
-    else if (contador2==2){
+    else if (contador2==2 && fus2==0){
         QString st4 = QString ("QProgressBar::chunk {""background-color: #ff336B;""}");
         st4.append("QProgressBar {""border: 1px solid grey;""border-radius: 2px;""text-align: center;""background: #eeeeee;""}");
         ui->fusionbarra2->setStyleSheet(st4);
@@ -378,7 +379,7 @@ void ScreenCombate::ActualizarEquipo(QVector<int> pjs){
 void ScreenCombate::on_fusion1_clicked()
 {
     if (turno==1){
-        int fus=0;
+        fus=0;
         if((equipo1[pj1]->ID==1 && equipo1[ui->comboBoxf1->currentIndex()]->ID==2)||(equipo1[pj1]->ID==2 && equipo1[ui->comboBoxf1->currentIndex()]->ID==1)){
             fus=1;
             equipo1.push_back(std::make_shared<MagoCachas>(equipo1[pj1].get(),equipo1[ui->comboBoxf1->currentIndex()].get()));
@@ -414,18 +415,18 @@ void ScreenCombate::on_fusion1_clicked()
 void ScreenCombate::on_fusion2_clicked()
 {
     if (turno==2){
-        int fus=0;
+        fus2=0;
         if((equipo2[pj2]->ID==1 && equipo2[ui->comboBoxf2->currentIndex()]->ID==2)||(equipo2[pj2]->ID==2 && equipo2[ui->comboBoxf2->currentIndex()]->ID==1)){
-            fus=1;
+            fus2=1;
             equipo2.push_back(std::make_shared<MagoCachas>(equipo2[pj2].get(),equipo2[ui->comboBoxf2->currentIndex()].get()));
         } else if((equipo2[pj2]->ID==1 && equipo2[ui->comboBoxf2->currentIndex()]->ID==3)||(equipo2[pj2]->ID==3 && equipo2[ui->comboBoxf2->currentIndex()]->ID==1)){
-            fus=1;
+            fus2=1;
             equipo2.push_back(std::make_shared<Paladin>(equipo2[pj2].get(),equipo2[ui->comboBoxf2->currentIndex()].get()));
         } else if((equipo2[pj2]->ID==3 && equipo2[ui->comboBoxf2->currentIndex()]->ID==2)||(equipo2[pj2]->ID==2 && equipo2[ui->comboBoxf2->currentIndex()]->ID==3)){
-            fus=1;
+            fus2=1;
             equipo2.push_back(std::make_shared<Obispo>(equipo2[pj2].get(),equipo2[ui->comboBoxf2->currentIndex()].get()));
         }
-        if(fus==1){
+        if(fus2==1){
             if(pj2<ui->comboBoxf2->currentIndex()){
                 equipo2.remove(ui->comboBoxf2->currentIndex());
                 equipo2.remove(pj2);
