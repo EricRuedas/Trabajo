@@ -15,14 +15,18 @@ public:
     Personaje();
     ~Personaje();
     virtual void Habilidad(int,Personaje*,QVector<std::shared_ptr<Personaje>>)=0;
+    void Reajustar();
     int HP=1;
     int PP=1;
     int HP_max=1;
     int PP_max=1;
     int at_f=0;
+    int at_f_base=0;
     int at_m=0;
+    int at_m_base=0;
     int def_f=0;
     int def_m=0;
+    int ID=0;
     QComboBox hab;
     QPixmap im_normal1;
     QPixmap im_normal2;
@@ -58,6 +62,30 @@ public:
     void Bastonazo(Personaje*);
     void Curar(QVector<std::shared_ptr<Personaje>>);
     void RayoDivino(Personaje*);
+    virtual void Habilidad(int,Personaje*,QVector<std::shared_ptr<Personaje>>) override;
+};
+
+class MagoCachas:public Guerrero, public Mago{
+public:
+    MagoCachas(Personaje*,Personaje*);
+    ~MagoCachas();
+    void GolpeDoble(Personaje*);
+    virtual void Habilidad(int,Personaje*,QVector<std::shared_ptr<Personaje>>) override;
+};
+
+class Paladin:public Guerrero, public Clerigo{
+public:
+    Paladin(Personaje*,Personaje*);
+    ~Paladin();
+    void EspadaDrenaje(Personaje*);
+    virtual void Habilidad(int,Personaje*,QVector<std::shared_ptr<Personaje>>) override;
+};
+
+class Obispo:public Mago, public Clerigo{
+public:
+    Obispo(Personaje*,Personaje*);
+    ~Obispo();
+    void HechizoSagrado(QVector<std::shared_ptr<Personaje>>);
     virtual void Habilidad(int,Personaje*,QVector<std::shared_ptr<Personaje>>) override;
 };
 

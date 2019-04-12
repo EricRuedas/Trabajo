@@ -258,14 +258,21 @@ void ScreenCombate::ActualizarMenu(){
     }
 
     ui->comboBoxc1->clear();
-    for(int i=0;i<3;i++){
+    ui->comboBoxf1->clear();
+    for(int i=0;i<equipo1.size();i++){
         ui->comboBoxc1->addItem(nequi1[i]);
+        ui->comboBoxf1->addItem(nequi1[i]);
     }
 
     ui->comboBoxc2->clear();
-    for(int i=0;i<3;i++){
+    ui->comboBoxf2->clear();
+    for(int i=0;i<equipo2.size();i++){
         ui->comboBoxc2->addItem(nequi2[i]);
+        ui->comboBoxf2->addItem(nequi2[i]);
     }
+
+    ui->comboBoxc1->setCurrentIndex(pj1);
+    ui->comboBoxc2->setCurrentIndex(pj2);
 }
 
 void ScreenCombate::on_cambiar1_clicked()
@@ -283,6 +290,8 @@ void ScreenCombate::on_cambiar1_clicked()
             }
             else{
                 turno=1;
+                ActualizarPantalla();
+                ActualizarMenu();
                 ui->mensaje1->setText("Turno del jugador 1");
             }
         }
@@ -305,6 +314,8 @@ void ScreenCombate::on_cambiar2_clicked()
             }
             else{
                 turno=2;
+                ActualizarMenu();
+                ActualizarPantalla();
                 ui->mensaje1->setText("Turno del jugador 2");
             }
         }
@@ -362,4 +373,99 @@ void ScreenCombate::ActualizarEquipo(QVector<int> pjs){
 
     ActualizarPantalla();
     ActualizarMenu();
+}
+
+void ScreenCombate::on_fusion1_clicked()
+{
+    if (turno==1){
+        int fus=0;
+        if((equipo1[pj1]->ID==1 && equipo1[ui->comboBoxf1->currentIndex()]->ID==2)||(equipo1[pj1]->ID==2 && equipo1[ui->comboBoxf1->currentIndex()]->ID==1)){
+            fus=1;
+            equipo1.push_back(std::make_shared<MagoCachas>(equipo1[pj1].get(),equipo1[ui->comboBoxf1->currentIndex()].get()));
+        } else if((equipo1[pj1]->ID==1 && equipo1[ui->comboBoxf1->currentIndex()]->ID==3)||(equipo1[pj1]->ID==3 && equipo1[ui->comboBoxf1->currentIndex()]->ID==1)){
+            fus=1;
+            equipo1.push_back(std::make_shared<Paladin>(equipo1[pj1].get(),equipo1[ui->comboBoxf1->currentIndex()].get()));
+        } else if((equipo1[pj1]->ID==3 && equipo1[ui->comboBoxf1->currentIndex()]->ID==2)||(equipo1[pj1]->ID==2 && equipo1[ui->comboBoxf1->currentIndex()]->ID==3)){
+            fus=1;
+            equipo1.push_back(std::make_shared<Obispo>(equipo1[pj1].get(),equipo1[ui->comboBoxf1->currentIndex()].get()));
+        }
+        if(fus==1){
+            if(pj1<ui->comboBoxf1->currentIndex()){
+                equipo1.remove(ui->comboBoxf1->currentIndex());
+                equipo1.remove(pj1);
+            } else{
+                equipo1.remove(pj1);
+                equipo1.remove(ui->comboBoxf1->currentIndex());
+            }
+            ActualizarNombres(1);
+            pj1=1;
+            ui->mensaje1->setText("¡FUUUUUSIÓOON!");
+            qApp->processEvents();
+            QThread Q;
+            Q.msleep(2000);
+            ui->mensaje1->setText("Turno del jugador 2");
+            ActualizarMenu();
+            ActualizarPantalla();
+            turno=2;
+        }
+    }
+}
+
+void ScreenCombate::on_fusion2_clicked()
+{
+    if (turno==2){
+        int fus=0;
+        if((equipo2[pj2]->ID==1 && equipo2[ui->comboBoxf2->currentIndex()]->ID==2)||(equipo2[pj2]->ID==2 && equipo2[ui->comboBoxf2->currentIndex()]->ID==1)){
+            fus=1;
+            equipo2.push_back(std::make_shared<MagoCachas>(equipo2[pj2].get(),equipo2[ui->comboBoxf2->currentIndex()].get()));
+        } else if((equipo2[pj2]->ID==1 && equipo2[ui->comboBoxf2->currentIndex()]->ID==3)||(equipo2[pj2]->ID==3 && equipo2[ui->comboBoxf2->currentIndex()]->ID==1)){
+            fus=1;
+            equipo2.push_back(std::make_shared<Paladin>(equipo2[pj2].get(),equipo2[ui->comboBoxf2->currentIndex()].get()));
+        } else if((equipo2[pj2]->ID==3 && equipo2[ui->comboBoxf2->currentIndex()]->ID==2)||(equipo2[pj2]->ID==2 && equipo2[ui->comboBoxf2->currentIndex()]->ID==3)){
+            fus=1;
+            equipo2.push_back(std::make_shared<Obispo>(equipo2[pj2].get(),equipo2[ui->comboBoxf2->currentIndex()].get()));
+        }
+        if(fus==1){
+            if(pj2<ui->comboBoxf2->currentIndex()){
+                equipo2.remove(ui->comboBoxf2->currentIndex());
+                equipo2.remove(pj2);
+            } else{
+                equipo2.remove(pj2);
+                equipo2.remove(ui->comboBoxf2->currentIndex());
+            }
+            ActualizarNombres(2);
+            pj2=1;
+            ui->mensaje1->setText("¡FUUUUUSIÓOON!");
+            qApp->processEvents();
+            QThread Q;
+            Q.msleep(2000);
+            ui->mensaje1->setText("Turno del jugador 1");
+            ActualizarMenu();
+            ActualizarPantalla();
+            turno=1;
+        }
+    }
+}
+
+void ScreenCombate::ActualizarNombres(int eq){
+    if (eq==1){
+        for (int i=0; i<3; i++){
+            if((i!=pj1)&&(i!=ui->comboBoxf1->currentIndex())){
+                nequi1[0]=nequi1[i];
+            }
+        }
+        if(equipo1[1]->ID==4){nequi1[1]="Guerrero cachas";}
+        else if(equipo1[1]->ID==5){nequi1[1]="Paladín";}
+        else if(equipo1[1]->ID==6){nequi1[1]="Obispo";}
+    }
+    else{
+        for (int i=0; i<3; i++){
+            if((i!=pj2)&&(i!=ui->comboBoxf2->currentIndex())){
+                nequi2[0]=nequi2[i];
+            }
+        }
+        if(equipo2[1]->ID==4){nequi2[1]="Guerrero cachas";}
+        else if(equipo2[1]->ID==5){nequi2[1]="Paladín";}
+        else if(equipo2[1]->ID==6){nequi2[1]="Obispo";}
+    }
 }

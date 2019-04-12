@@ -46,6 +46,12 @@ private slots:
 
     int ComprobarEquipo(QVector<std::shared_ptr<Personaje>>);
 
+    void ActualizarNombres(int);
+
+
+    void on_fusion1_clicked();
+
+    void on_fusion2_clicked();
 
 private:
     Ui::ScreenCombate *ui;

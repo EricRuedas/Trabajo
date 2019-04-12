@@ -62,7 +62,7 @@ public:
         fusion1->setGeometry(QRect(40, 490, 121, 41));
         mensaje1 = new QLabel(ScreenCombate);
         mensaje1->setObjectName(QStringLiteral("mensaje1"));
-        mensaje1->setGeometry(QRect(340, 430, 401, 31));
+        mensaje1->setGeometry(QRect(40, 430, 921, 31));
         QPalette palette;
         QBrush brush(QColor(255, 255, 255, 255));
         brush.setStyle(Qt::SolidPattern);
@@ -85,12 +85,13 @@ public:
         font.setItalic(false);
         font.setWeight(75);
         mensaje1->setFont(font);
+        mensaje1->setAlignment(Qt::AlignCenter);
         Salir = new QCommandLinkButton(ScreenCombate);
         Salir->setObjectName(QStringLiteral("Salir"));
         Salir->setGeometry(QRect(50, 560, 71, 41));
         comboBoxu1 = new QComboBox(ScreenCombate);
         comboBoxu1->setObjectName(QStringLiteral("comboBoxu1"));
-        comboBoxu1->setGeometry(QRect(320, 530, 121, 22));
+        comboBoxu1->setGeometry(QRect(320, 530, 151, 22));
         barrapoder1 = new QProgressBar(ScreenCombate);
         barrapoder1->setObjectName(QStringLiteral("barrapoder1"));
         barrapoder1->setGeometry(QRect(210, 10, 81, 23));
@@ -110,7 +111,7 @@ public:
         picpersonaje1->setGeometry(QRect(60, 80, 331, 331));
         usar1 = new QPushButton(ScreenCombate);
         usar1->setObjectName(QStringLiteral("usar1"));
-        usar1->setGeometry(QRect(320, 490, 121, 41));
+        usar1->setGeometry(QRect(320, 490, 151, 41));
         comboBoxf1 = new QComboBox(ScreenCombate);
         comboBoxf1->setObjectName(QStringLiteral("comboBoxf1"));
         comboBoxf1->setGeometry(QRect(40, 530, 121, 22));
@@ -127,7 +128,7 @@ public:
         fusion2->setGeometry(QRect(840, 490, 121, 41));
         comboBoxu2 = new QComboBox(ScreenCombate);
         comboBoxu2->setObjectName(QStringLiteral("comboBoxu2"));
-        comboBoxu2->setGeometry(QRect(560, 530, 121, 22));
+        comboBoxu2->setGeometry(QRect(530, 530, 151, 22));
         comboBoxf2 = new QComboBox(ScreenCombate);
         comboBoxf2->setObjectName(QStringLiteral("comboBoxf2"));
         comboBoxf2->setGeometry(QRect(840, 530, 121, 22));
@@ -141,7 +142,7 @@ public:
         cambiar2->setGeometry(QRect(700, 490, 121, 41));
         usar2 = new QPushButton(ScreenCombate);
         usar2->setObjectName(QStringLiteral("usar2"));
-        usar2->setGeometry(QRect(560, 490, 121, 41));
+        usar2->setGeometry(QRect(530, 490, 151, 41));
         comboBoxc1 = new QComboBox(ScreenCombate);
         comboBoxc1->setObjectName(QStringLiteral("comboBoxc1"));
         comboBoxc1->setGeometry(QRect(180, 530, 121, 22));

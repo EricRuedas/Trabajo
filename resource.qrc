@@ -19,5 +19,14 @@
         <file>miniclerigo.png</file>
         <file>miniguerrero.png</file>
         <file>fondo.jpeg</file>
+        <file>132.png</file>
+        <file>MagoCachas1_ataque.png</file>
+        <file>MagoCachas1_quieto.png</file>
+        <file>MagoCachas2_ataque.png</file>
+        <file>MagoCachas2_quieto.png</file>
+        <file>paladin1_ataque.png</file>
+        <file>paladin1_quieto.png</file>
+        <file>paladin2_ataque.png</file>
+        <file>paladin2_quieto.png</file>
     </qresource>
 </RCC>

@@ -29,9 +29,9 @@
   <widget class="QLabel" name="mensaje1">
    <property name="geometry">
     <rect>
-     <x>340</x>
+     <x>40</x>
      <y>430</y>
-     <width>401</width>
+     <width>921</width>
      <height>31</height>
     </rect>
    </property>
@@ -138,6 +138,9 @@
    <property name="text">
     <string>TextLabel</string>
    </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
   </widget>
   <widget class="QCommandLinkButton" name="Salir">
    <property name="geometry">
@@ -157,7 +160,7 @@
     <rect>
      <x>320</x>
      <y>530</y>
-     <width>121</width>
+     <width>151</width>
      <height>22</height>
     </rect>
    </property>
@@ -234,7 +237,7 @@
     <rect>
      <x>320</x>
      <y>490</y>
-     <width>121</width>
+     <width>151</width>
      <height>41</height>
     </rect>
    </property>
@@ -300,9 +303,9 @@
   <widget class="QComboBox" name="comboBoxu2">
    <property name="geometry">
     <rect>
-     <x>560</x>
+     <x>530</x>
      <y>530</y>
-     <width>121</width>
+     <width>151</width>
      <height>22</height>
     </rect>
    </property>
@@ -352,9 +355,9 @@
   <widget class="QPushButton" name="usar2">
    <property name="geometry">
     <rect>
-     <x>560</x>
+     <x>530</x>
      <y>490</y>
-     <width>121</width>
+     <width>151</width>
      <height>41</height>
     </rect>
    </property>
