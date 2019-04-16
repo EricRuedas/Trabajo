@@ -303,13 +303,13 @@ Paladin::Paladin(Personaje* g,Personaje* m):Personaje(),Guerrero(),Clerigo(){
     def_m=g->def_m+m->def_m;
     costes.push_back(55);
     hab.addItem("Espada drenaje (55 PH)");
-    QPixmap pic1(":/mini/paladin1_quieto.png");
+    QPixmap pic1(":/mini/PPaladin1_quieto.png");
     im_normal1=pic1;
-    QPixmap pic2(":/mini/paladin1_ataque.png");
+    QPixmap pic2(":/mini/PPaladin1_ataque.png");
     im_ataque1=pic2;
-    QPixmap pic3(":/mini/paladin2_quieto.png");
+    QPixmap pic3(":/mini/PPaladin2_quieto.png");
     im_normal2=pic3;
-    QPixmap pic4(":/mini/paladin2_ataque.png");
+    QPixmap pic4(":/mini/PPaladin2_ataque.png");
     im_ataque2=pic4;
 }
 

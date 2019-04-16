@@ -28,5 +28,9 @@
         <file>paladin1_quieto.png</file>
         <file>paladin2_ataque.png</file>
         <file>paladin2_quieto.png</file>
+        <file>PPaladin1_ataque.png</file>
+        <file>PPaladin1_quieto.png</file>
+        <file>PPaladin2_ataque.png</file>
+        <file>PPaladin2_quieto.png</file>
     </qresource>
 </RCC>
