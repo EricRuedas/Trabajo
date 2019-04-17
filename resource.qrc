@@ -32,5 +32,9 @@
         <file>PPaladin1_quieto.png</file>
         <file>PPaladin2_ataque.png</file>
         <file>PPaladin2_quieto.png</file>
+        <file>Obispo1_ataque.png</file>
+        <file>Obispo1_quieto.png</file>
+        <file>Obispo2_ataque.png</file>
+        <file>Obispo2_quieto.png</file>
     </qresource>
 </RCC>

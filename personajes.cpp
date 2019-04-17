@@ -375,13 +375,13 @@ Obispo::Obispo(Personaje* g,Personaje* m):Personaje(),Mago(),Clerigo(){
     def_m=g->def_m+m->def_m;
     costes.push_back(100);
     hab.addItem("Hechizo sagrado (100 PH)");
-    QPixmap pic1(":/mini/132.png");
+    QPixmap pic1(":/mini/Obispo1_quieto.png");
     im_normal1=pic1;
-    QPixmap pic2(":/mini/132.png");
+    QPixmap pic2(":/mini/Obispo1_ataque.png");
     im_ataque1=pic2;
-    QPixmap pic3(":/mini/132.png");
+    QPixmap pic3(":/mini/Obispo2_quieto.png");
     im_normal2=pic3;
-    QPixmap pic4(":/mini/132.png");
+    QPixmap pic4(":/mini/Obispo2_ataque.png");
     im_ataque2=pic4;
 }
 
