@@ -12,6 +12,8 @@ namespace Ui {
 class ScreenCombate;
 }
 
+class QMediaPlayer;
+
 class ScreenCombate : public QDialog
 {
     Q_OBJECT
@@ -48,13 +50,16 @@ private slots:
 
     void ActualizarNombres(int);
 
-
     void on_fusion1_clicked();
 
     void on_fusion2_clicked();
 
 private:
     Ui::ScreenCombate *ui;
+    QMediaPlayer *mediaplayer;
+    QMediaPlayer *mediaplayer2;
+    QMediaPlayer *mediaplayer3;
+    QMediaPlayer *mediaplayer4;
 };
 
 #endif // SCREENCOMBATE_H

@@ -3,19 +3,26 @@
 #include "personajes.h"
 #include "screenpersonajes.h"
 
+#include "QMediaPlayer"
 #include <QVector>
 #include <QDebug>
 #include <QApplication>
 #include <QThread>
 
 QString porcentaje, formatobarravida, formatobarrapoder,nequi1[3],nequi2[3];
-int pj1=0,pj2=0,turno=1,contador=0, contador2=0, fus=0, fus2=0;
+int pj1=0,pj2=0,turno=1,contador=0, contador2=0, fus=0, fus2=0, sonido;
 
 ScreenCombate::ScreenCombate(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::ScreenCombate)
 {
     ui->setupUi(this);
+
+    // Música épica de fondo:
+    mediaplayer = new QMediaPlayer(this);
+    mediaplayer->setMedia(QUrl("qrc:/mini/Path.mp3"));
+    mediaplayer->setVolume(60);
+    mediaplayer->play();
 
     // Para el fondo de batalla:
 
@@ -82,6 +89,32 @@ void ScreenCombate::on_usar1_clicked()
             //La animación de combate
             ui->picpersonaje1->setPixmap(equipo1[pj1]->im_ataque1);
             ui->mensaje1->setText(nequi1[pj1]+" usó "+ui->comboBoxu1->currentText());
+
+            if (equipo1[pj1]->ID==1){
+                mediaplayer2 = new QMediaPlayer(this);
+                mediaplayer2->setMedia(QUrl("qrc:/mini/sword.mp3"));
+                mediaplayer2->setVolume(100);
+                mediaplayer2->play();
+            }
+            else if (equipo1[pj1]->ID==2){
+                mediaplayer2 = new QMediaPlayer(this);
+                mediaplayer2->setMedia(QUrl("qrc:/mini/magic.mp3"));
+                mediaplayer2->setVolume(100);
+                mediaplayer2->play();
+            }
+            else if (equipo1[pj1]->ID==3){
+                mediaplayer2 = new QMediaPlayer(this);
+                mediaplayer2->setMedia(QUrl("qrc:/mini/poo.mp3"));
+                mediaplayer2->setVolume(100);
+                mediaplayer2->play();
+            }
+            else {
+                mediaplayer2 = new QMediaPlayer(this);
+                mediaplayer2->setMedia(QUrl("qrc:/mini/laugh.mp3"));
+                mediaplayer2->setVolume(100);
+                mediaplayer2->play();
+            }
+
             qApp->processEvents();
 
             //Aquí va el delay
@@ -108,6 +141,10 @@ void ScreenCombate::on_usar1_clicked()
                 turno=4;
                 ui->mensaje1->setText("Jugador 2, cambie a otro personaje");
                 contador2=0;
+                mediaplayer2 = new QMediaPlayer(this);
+                mediaplayer2->setMedia(QUrl("qrc:/mini/ouch.mp3"));
+                mediaplayer2->setVolume(100);
+                mediaplayer2->play();
             }else{
                 turno=2;
                 ui->mensaje1->setText("Turno del jugador 2");
@@ -128,6 +165,32 @@ void ScreenCombate::on_usar2_clicked()
             //La animación de combate
             ui->picpersonaje2->setPixmap(equipo2[pj2]->im_ataque2);
             ui->mensaje1->setText(nequi2[pj2]+" usó "+ui->comboBoxu2->currentText());
+
+            if (equipo2[pj2]->ID==1){
+                mediaplayer3 = new QMediaPlayer(this);
+                mediaplayer3->setMedia(QUrl("qrc:/mini/sword.mp3"));
+                mediaplayer3->setVolume(100);
+                mediaplayer3->play();
+            }
+            else if (equipo2[pj2]->ID==2){
+                mediaplayer3 = new QMediaPlayer(this);
+                mediaplayer3->setMedia(QUrl("qrc:/mini/magic.mp3"));
+                mediaplayer3->setVolume(100);
+                mediaplayer3->play();
+            }
+            else if (equipo2[pj2]->ID==3){
+                mediaplayer3 = new QMediaPlayer(this);
+                mediaplayer3->setMedia(QUrl("qrc:/mini/poo.mp3"));
+                mediaplayer3->setVolume(100);
+                mediaplayer3->play();
+            }
+            else {
+                mediaplayer3 = new QMediaPlayer(this);
+                mediaplayer3->setMedia(QUrl("qrc:/mini/laugh.mp3"));
+                mediaplayer3->setVolume(100);
+                mediaplayer3->play();
+            }
+
             qApp->processEvents(); //Actualizar las imágenes
 
             //Aquí va el delay
@@ -154,6 +217,10 @@ void ScreenCombate::on_usar2_clicked()
                 turno=3;
                 ui->mensaje1->setText("Jugador 1, cambie a otro personaje");
                 contador=0;
+                mediaplayer2 = new QMediaPlayer(this);
+                mediaplayer2->setMedia(QUrl("qrc:/mini/ouch.mp3"));
+                mediaplayer2->setVolume(100);
+                mediaplayer2->play();
             }else{
                 turno=1;
                 ui->mensaje1->setText("Turno del jugador 1");
@@ -401,6 +468,10 @@ void ScreenCombate::on_fusion1_clicked()
             ActualizarNombres(1);
             pj1=1;
             ui->mensaje1->setText("¡FUUUUUSIÓOON!");
+            mediaplayer4 = new QMediaPlayer(this);
+            mediaplayer4->setMedia(QUrl("qrc:/mini/fusion.mpeg"));
+            mediaplayer4->setVolume(100);
+            mediaplayer4->play();
             qApp->processEvents();
             QThread Q;
             Q.msleep(2000);
@@ -437,6 +508,10 @@ void ScreenCombate::on_fusion2_clicked()
             ActualizarNombres(2);
             pj2=1;
             ui->mensaje1->setText("¡FUUUUUSIÓOON!");
+            mediaplayer4 = new QMediaPlayer(this);
+            mediaplayer4->setMedia(QUrl("qrc:/mini/fusion.mpeg"));
+            mediaplayer4->setVolume(100);
+            mediaplayer4->play();
             qApp->processEvents();
             QThread Q;
             Q.msleep(2000);

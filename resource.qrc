@@ -32,9 +32,16 @@
         <file>PPaladin1_quieto.png</file>
         <file>PPaladin2_ataque.png</file>
         <file>PPaladin2_quieto.png</file>
+        <file>laugh.mp3</file>
+        <file>magic.mp3</file>
+        <file>ouch.mp3</file>
+        <file>Path.mp3</file>
+        <file>poo.mp3</file>
+        <file>sword.mp3</file>
         <file>Obispo1_ataque.png</file>
         <file>Obispo1_quieto.png</file>
         <file>Obispo2_ataque.png</file>
         <file>Obispo2_quieto.png</file>
+        <file>fusion.mpeg</file>
     </qresource>
 </RCC>
