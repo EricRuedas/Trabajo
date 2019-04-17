@@ -445,7 +445,7 @@ void ScreenCombate::ActualizarEquipo(QVector<int> pjs){
 
 void ScreenCombate::on_fusion1_clicked()
 {
-    if (turno==1){
+    if (turno==1 && equipo1[pj1]->HP>0 && equipo1[ui->comboBoxf1->currentIndex()]->HP>0){
         fus=0;
         if((equipo1[pj1]->ID==1 && equipo1[ui->comboBoxf1->currentIndex()]->ID==2)||(equipo1[pj1]->ID==2 && equipo1[ui->comboBoxf1->currentIndex()]->ID==1)){
             fus=1;
@@ -485,7 +485,7 @@ void ScreenCombate::on_fusion1_clicked()
 
 void ScreenCombate::on_fusion2_clicked()
 {
-    if (turno==2){
+    if (turno==2 && equipo2[pj2]->HP>0 && equipo2[ui->comboBoxf2->currentIndex()]->HP>0){
         fus2=0;
         if((equipo2[pj2]->ID==1 && equipo2[ui->comboBoxf2->currentIndex()]->ID==2)||(equipo2[pj2]->ID==2 && equipo2[ui->comboBoxf2->currentIndex()]->ID==1)){
             fus2=1;
@@ -530,7 +530,7 @@ void ScreenCombate::ActualizarNombres(int eq){
                 nequi1[0]=nequi1[i];
             }
         }
-        if(equipo1[1]->ID==4){nequi1[1]="Guerrero cachas";}
+        if(equipo1[1]->ID==4){nequi1[1]="Mago cachas";}
         else if(equipo1[1]->ID==5){nequi1[1]="Paladín";}
         else if(equipo1[1]->ID==6){nequi1[1]="Obispo";}
     }
@@ -540,7 +540,7 @@ void ScreenCombate::ActualizarNombres(int eq){
                 nequi2[0]=nequi2[i];
             }
         }
-        if(equipo2[1]->ID==4){nequi2[1]="Guerrero cachas";}
+        if(equipo2[1]->ID==4){nequi2[1]="Mago cachas";}
         else if(equipo2[1]->ID==5){nequi2[1]="Paladín";}
         else if(equipo2[1]->ID==6){nequi2[1]="Obispo";}
     }
