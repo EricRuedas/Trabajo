@@ -7,12 +7,11 @@
 #include <memory>
 #include <QString>
 //Se incluyen para hacer vectores con punteros inteligentes
+#include <QMediaPlayer>
 
 namespace Ui {
 class ScreenCombate;
 }
-
-class QMediaPlayer;
 
 class ScreenCombate : public QDialog
 {
@@ -53,6 +52,8 @@ private slots:
     void on_fusion1_clicked();
 
     void on_fusion2_clicked();
+
+    void bloquear();
 
 private:
     Ui::ScreenCombate *ui;

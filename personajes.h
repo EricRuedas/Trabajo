@@ -5,6 +5,7 @@
 #include <ui_screencombate.h>
 #include <QVector>
 #include <memory>
+#include <QMediaPlayer>
 
 //namespace Ui {
 //class MainWindow;
@@ -33,6 +34,7 @@ public:
     QPixmap im_ataque1;
     QPixmap im_ataque2;
     QVector<int> costes;
+    QString sonido_ataque;
 };
 
 class Guerrero : virtual public Personaje {

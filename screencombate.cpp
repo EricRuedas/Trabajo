@@ -8,6 +8,7 @@
 #include <QDebug>
 #include <QApplication>
 #include <QThread>
+#include <QTimer>
 
 QString porcentaje, formatobarravida, formatobarrapoder,nequi1[3],nequi2[3];
 int pj1=0,pj2=0,turno=1,contador=0, contador2=0, fus=0, fus2=0, sonido;
@@ -90,36 +91,20 @@ void ScreenCombate::on_usar1_clicked()
             ui->picpersonaje1->setPixmap(equipo1[pj1]->im_ataque1);
             ui->mensaje1->setText(nequi1[pj1]+" usó "+ui->comboBoxu1->currentText());
 
-            if (equipo1[pj1]->ID==1){
-                mediaplayer2 = new QMediaPlayer(this);
-                mediaplayer2->setMedia(QUrl("qrc:/mini/sword.mp3"));
-                mediaplayer2->setVolume(100);
-                mediaplayer2->play();
-            }
-            else if (equipo1[pj1]->ID==2){
-                mediaplayer2 = new QMediaPlayer(this);
-                mediaplayer2->setMedia(QUrl("qrc:/mini/magic.mp3"));
-                mediaplayer2->setVolume(100);
-                mediaplayer2->play();
-            }
-            else if (equipo1[pj1]->ID==3){
-                mediaplayer2 = new QMediaPlayer(this);
-                mediaplayer2->setMedia(QUrl("qrc:/mini/poo.mp3"));
-                mediaplayer2->setVolume(100);
-                mediaplayer2->play();
-            }
-            else {
-                mediaplayer2 = new QMediaPlayer(this);
-                mediaplayer2->setMedia(QUrl("qrc:/mini/laugh.mp3"));
-                mediaplayer2->setVolume(100);
-                mediaplayer2->play();
-            }
+            mediaplayer2 = new QMediaPlayer(this);
+            mediaplayer2->setMedia(QUrl(equipo1[pj1]->sonido_ataque));
+            mediaplayer2->setVolume(100);
+            mediaplayer2->play();
 
             qApp->processEvents();
+            bloquear();
 
             //Aquí va el delay
-            QThread Q;
-            Q.msleep(1500);
+            QEventLoop loop;
+            QTimer timer;
+            QObject::connect(&timer, &QTimer::timeout, &loop, &QEventLoop::quit);
+            timer.start(1500);
+            loop.exec();
             //Fin del delay
 
             ui->picpersonaje1->setPixmap(equipo1[pj1]->im_normal1);
@@ -149,11 +134,10 @@ void ScreenCombate::on_usar1_clicked()
                 turno=2;
                 ui->mensaje1->setText("Turno del jugador 2");
             }
+             ActualizarPantalla();
         }
         else{ui->mensaje1->setText("Jugador 1, no tienes suficientes PH para usar eso");}
     }
-
-    ActualizarPantalla();
 }
 
 void ScreenCombate::on_usar2_clicked()
@@ -166,36 +150,20 @@ void ScreenCombate::on_usar2_clicked()
             ui->picpersonaje2->setPixmap(equipo2[pj2]->im_ataque2);
             ui->mensaje1->setText(nequi2[pj2]+" usó "+ui->comboBoxu2->currentText());
 
-            if (equipo2[pj2]->ID==1){
-                mediaplayer3 = new QMediaPlayer(this);
-                mediaplayer3->setMedia(QUrl("qrc:/mini/sword.mp3"));
-                mediaplayer3->setVolume(100);
-                mediaplayer3->play();
-            }
-            else if (equipo2[pj2]->ID==2){
-                mediaplayer3 = new QMediaPlayer(this);
-                mediaplayer3->setMedia(QUrl("qrc:/mini/magic.mp3"));
-                mediaplayer3->setVolume(100);
-                mediaplayer3->play();
-            }
-            else if (equipo2[pj2]->ID==3){
-                mediaplayer3 = new QMediaPlayer(this);
-                mediaplayer3->setMedia(QUrl("qrc:/mini/poo.mp3"));
-                mediaplayer3->setVolume(100);
-                mediaplayer3->play();
-            }
-            else {
-                mediaplayer3 = new QMediaPlayer(this);
-                mediaplayer3->setMedia(QUrl("qrc:/mini/laugh.mp3"));
-                mediaplayer3->setVolume(100);
-                mediaplayer3->play();
-            }
+            mediaplayer3 = new QMediaPlayer(this);
+            mediaplayer3->setMedia(QUrl(equipo2[pj2]->sonido_ataque));
+            mediaplayer3->setVolume(100);
+            mediaplayer3->play();
 
             qApp->processEvents(); //Actualizar las imágenes
+            bloquear();
 
             //Aquí va el delay
-            QThread Q;
-            Q.msleep(1500);
+            QEventLoop loop;
+            QTimer timer;
+            QObject::connect(&timer, &QTimer::timeout, &loop, &QEventLoop::quit);
+            timer.start(1500);
+            loop.exec();
             //Fin del delay
 
             ui->picpersonaje2->setPixmap(equipo2[pj2]->im_normal2);
@@ -225,11 +193,10 @@ void ScreenCombate::on_usar2_clicked()
                 turno=1;
                 ui->mensaje1->setText("Turno del jugador 1");
             }
+            ActualizarPantalla();
         }
         else{ui->mensaje1->setText("Jugador 2, no tienes suficientes PH para usar eso");}
     }
-
-    ActualizarPantalla();
 }
 
 void ScreenCombate::ActualizarPantalla(){
@@ -254,9 +221,6 @@ void ScreenCombate::ActualizarPantalla(){
     porcentaje = QString::number(equipo2[pj2]->PP_max,'g',20);
     formatobarrapoder = "%v/"+porcentaje;
     ui->barrapoder2->setFormat(formatobarrapoder);
-
-    ui->picpersonaje1->setPixmap(equipo1[pj1]->im_normal1);
-    ui->picpersonaje2->setPixmap(equipo2[pj2]->im_normal2);
 
     // Actualización de la barra y botón de fusión:
 
@@ -362,6 +326,7 @@ void ScreenCombate::on_cambiar1_clicked()
                 ActualizarMenu();
                 ui->mensaje1->setText("Turno del jugador 1");
             }
+            ui->picpersonaje1->setPixmap(equipo1[pj1]->im_normal1);
         }
     }
 }
@@ -386,6 +351,7 @@ void ScreenCombate::on_cambiar2_clicked()
                 ActualizarPantalla();
                 ui->mensaje1->setText("Turno del jugador 2");
             }
+            ui->picpersonaje2->setPixmap(equipo2[pj2]->im_normal2);
         }
     }
 }
@@ -440,6 +406,8 @@ void ScreenCombate::ActualizarEquipo(QVector<int> pjs){
     }
 
     ActualizarPantalla();
+    ui->picpersonaje1->setPixmap(equipo1[pj1]->im_normal1);
+    ui->picpersonaje2->setPixmap(equipo2[pj2]->im_normal2);
     ActualizarMenu();
 }
 
@@ -473,11 +441,18 @@ void ScreenCombate::on_fusion1_clicked()
             mediaplayer4->setVolume(100);
             mediaplayer4->play();
             qApp->processEvents();
-            QThread Q;
-            Q.msleep(2000);
+
+            bloquear();
+            QEventLoop loop;
+            QTimer timer;
+            QObject::connect(&timer, &QTimer::timeout, &loop, &QEventLoop::quit);
+            timer.start(1500);
+            loop.exec();
+
             ui->mensaje1->setText("Turno del jugador 2");
             ActualizarMenu();
             ActualizarPantalla();
+            ui->picpersonaje1->setPixmap(equipo1[pj1]->im_normal1);
             turno=2;
         }
     }
@@ -513,11 +488,18 @@ void ScreenCombate::on_fusion2_clicked()
             mediaplayer4->setVolume(100);
             mediaplayer4->play();
             qApp->processEvents();
-            QThread Q;
-            Q.msleep(2000);
+
+            bloquear();
+            QEventLoop loop;
+            QTimer timer;
+            QObject::connect(&timer, &QTimer::timeout, &loop, &QEventLoop::quit);
+            timer.start(1500);
+            loop.exec();
+
             ui->mensaje1->setText("Turno del jugador 1");
             ActualizarMenu();
             ActualizarPantalla();
+            ui->picpersonaje2->setPixmap(equipo2[pj2]->im_normal2);
             turno=1;
         }
     }
@@ -544,4 +526,8 @@ void ScreenCombate::ActualizarNombres(int eq){
         else if(equipo2[1]->ID==5){nequi2[1]="Paladín";}
         else if(equipo2[1]->ID==6){nequi2[1]="Obispo";}
     }
+}
+
+void ScreenCombate::bloquear(){
+    turno=5;
 }

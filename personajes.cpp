@@ -47,6 +47,7 @@ Guerrero::Guerrero():Personaje(){
     im_normal2=pic3;
     QPixmap pic4(":/mini/guerrero2_ataque.png");
     im_ataque2=pic4;
+    sonido_ataque="qrc:/mini/sword.mp3";
 }
 
 Guerrero::~Guerrero(){}
@@ -109,6 +110,7 @@ Mago::Mago():Personaje(){
     im_normal2=pic3;
     QPixmap pic4(":/mini/mago2_ataque.png");
     im_ataque2=pic4;
+    sonido_ataque="qrc:/mini/magic.mp3";
 }
 
 Mago::~Mago(){}
@@ -173,6 +175,7 @@ Clerigo::Clerigo():Personaje(){
     im_normal2=pic3;
     QPixmap pic4(":/mini/clerigo2_ataque.png");
     im_ataque2=pic4;
+    sonido_ataque="qrc:/mini/poo.mp3";
 }
 
 Clerigo::~Clerigo(){}
@@ -242,6 +245,7 @@ MagoCachas::MagoCachas(Personaje* g,Personaje* m):Personaje(),Guerrero(),Mago(){
     im_normal2=pic3;
     QPixmap pic4(":/mini/MagoCachas2_ataque.png");
     im_ataque2=pic4;
+    sonido_ataque="qrc:/mini/laugh.mp3";
 }
 
 MagoCachas::~MagoCachas(){}
@@ -311,6 +315,7 @@ Paladin::Paladin(Personaje* g,Personaje* m):Personaje(),Guerrero(),Clerigo(){
     im_normal2=pic3;
     QPixmap pic4(":/mini/PPaladin2_ataque.png");
     im_ataque2=pic4;
+    sonido_ataque="qrc:/mini/laugh.mp3";
 }
 
 Paladin::~Paladin(){}
@@ -383,6 +388,7 @@ Obispo::Obispo(Personaje* g,Personaje* m):Personaje(),Mago(),Clerigo(){
     im_normal2=pic3;
     QPixmap pic4(":/mini/Obispo2_ataque.png");
     im_ataque2=pic4;
+    sonido_ataque="qrc:/mini/laugh.mp3";
 }
 
 Obispo::~Obispo(){}
