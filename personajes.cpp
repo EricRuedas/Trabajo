@@ -2,10 +2,11 @@
 #include "ui_mainwindow.h"
 #include "QMessageBox"
 #include <QVector>
+#include "QDebug"
 
 int damage(int a,int d){
-    int dam=a-d;
-    if (dam<=0){dam=0;}
+    int dam=round(0.01*(rand()%20+80)*(200*a/(25*d)+2));
+    if (dam<=0){dam=1;}
     return dam;
 }
 
@@ -29,10 +30,10 @@ Guerrero::Guerrero():Personaje(){
     HP=100;
     PP=50;
     PP_max=50;
-    at_f=30;
-    at_f_base=30;
-    def_f=25;
-    def_m=10;
+    at_f=15;
+    at_f_base=15;
+    def_f=10;
+    def_m=6;
     costes.push_back(0);
     costes.push_back(15);
     costes.push_back(20);
@@ -58,12 +59,12 @@ void Guerrero::Espadazo(Personaje *en){
 }
 
 void Guerrero::Aumento(){
-    this->at_f=60;
+    this->at_f=this->at_f_base*2;
     this->PP=this->PP-15;
 }
 
 void Guerrero::EspadazoFuerte(Personaje *en){
-    int dam=damage(this->at_f*1.3,en->def_f);
+    int dam=damage(this->at_f*1.5,en->def_f);
     en->HP=en->HP-dam;
     this->PP=this->PP-20;
 }
@@ -92,10 +93,10 @@ Mago::Mago():Personaje(){
     HP=100;
     PP_max=60;
     PP=60;
-    at_m=40;
-    at_m_base=40;
+    at_m=20;
+    at_m_base=20;
     def_f=5;
-    def_m=15;
+    def_m=10;
     costes.push_back(0);
     costes.push_back(20);
     costes.push_back(25);
@@ -121,13 +122,13 @@ void Mago::Hechizo(Personaje *en){
 }
 
 void Mago::HechizoGordo(Personaje *en){
-    int dam=damage(this->at_m*1.3,en->def_m);
+    int dam=damage(this->at_m*1.5,en->def_m);
     en->HP=en->HP-dam;
     this->PP=this->PP-20;
 }
 
 void Mago::PocionAumento(){
-    this->at_m=60;
+    this->at_m=this->at_m_base*2;
     this->PP=this->PP-25;
 }
 
@@ -155,12 +156,12 @@ Clerigo::Clerigo():Personaje(){
     HP_max=100;
     PP=75;
     PP_max=75;
-    at_f=15;
-    at_f_base=15;
-    at_m_base=20;
-    at_m=20;
-    def_f=10;
-    def_m=30;
+    at_f=6;
+    at_f_base=6;
+    at_m_base=10;
+    at_m=10;
+    def_f=8;
+    def_m=15;
     costes.push_back(0);
     costes.push_back(10);
     costes.push_back(20);
@@ -233,8 +234,8 @@ MagoCachas::MagoCachas(Personaje* g,Personaje* m):Personaje(),Guerrero(),Mago(){
     at_m=m->at_m_base+g->at_m_base;
     at_f_base=at_f;
     at_m_base=at_m;
-    def_f=g->def_f+m->def_f;
-    def_m=g->def_m+m->def_m;
+    def_f=(g->def_f+m->def_f)*0.5;
+    def_m=(g->def_m+m->def_m)*0.5;
     costes.push_back(50);
     hab.addItem("Golpe doble (50 PH)");
     QPixmap pic1(":/mini/MagoCachas1_quieto.png");
@@ -303,8 +304,8 @@ Paladin::Paladin(Personaje* g,Personaje* m):Personaje(),Guerrero(),Clerigo(){
     at_m=m->at_m_base+g->at_m_base;
     at_f_base=at_f;
     at_m_base=at_m;
-    def_f=g->def_f+m->def_f;
-    def_m=g->def_m+m->def_m;
+    def_f=(g->def_f+m->def_f)*0.5;
+    def_m=(g->def_m+m->def_m)*0.5;
     costes.push_back(55);
     hab.addItem("Espada drenaje (55 PH)");
     QPixmap pic1(":/mini/PPaladin1_quieto.png");
@@ -376,8 +377,8 @@ Obispo::Obispo(Personaje* g,Personaje* m):Personaje(),Mago(),Clerigo(){
     at_m=m->at_m_base+g->at_m_base;
     at_f_base=at_f;
     at_m_base=at_m;
-    def_f=g->def_f+m->def_f;
-    def_m=g->def_m+m->def_m;
+    def_f=(g->def_f+m->def_f)*0.5;
+    def_m=(g->def_m+m->def_m)*0.5;
     costes.push_back(100);
     hab.addItem("Hechizo sagrado (100 PH)");
     QPixmap pic1(":/mini/Obispo1_quieto.png");
