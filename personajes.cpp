@@ -4,6 +4,7 @@
 #include <QVector>
 #include "QDebug"
 
+// Fórmula de daño, teniendo en cuenta el ataque y defensa de los personajes y un porcentaje de variación del daño:
 int damage(int a,int d){
     int dam=round(0.01*(rand()%20+80)*(200*a/(25*d)+2));
     if (dam<=0){dam=1;}
@@ -19,11 +20,13 @@ Personaje::~Personaje(){}
     //en->HP=en->HP-(this->at_f-en->def_f);
 }*/
 
+// Para eliminar los cambios de características (si los ha habido, ya que los aumentos sólo sirven para la realización de un ataque):
 void Personaje::Reajustar(){
     this->at_f=this->at_f_base;
     this->at_m=this->at_m_base;
 }
 
+// Clase Guerrero heredada de Personaje:
 Guerrero::Guerrero():Personaje(){
     ID=1;
     HP_max=100;
@@ -87,6 +90,7 @@ void Guerrero::Habilidad(int n,Personaje *en,QVector<std::shared_ptr<Personaje>>
     }
 }
 
+// Clase Mago heredada de Personaje:
 Mago::Mago():Personaje(){
     ID=2;
     HP_max=100;
@@ -150,6 +154,7 @@ void Mago::Habilidad(int n,Personaje *en,QVector<std::shared_ptr<Personaje>> tea
     }
 }
 
+// Clase Clerigo heredada de Personaje:
 Clerigo::Clerigo():Personaje(){
     ID=3;
     HP=100;
@@ -224,6 +229,7 @@ void Clerigo::RayoDivino(Personaje *en){
     this->PP=this->PP-10;
 }
 
+// Clase MagoCachas heredada de Guerrero, Mago y Personaje:
 MagoCachas::MagoCachas(Personaje* g,Personaje* m):Personaje(),Guerrero(),Mago(){
     ID=4;
     HP=g->HP+m->HP;
@@ -294,6 +300,7 @@ void MagoCachas::Habilidad(int n,Personaje *en,QVector<std::shared_ptr<Personaje
     }
 }
 
+// Clase Paladin heredada de Guerrero, Clerigo y Personaje:
 Paladin::Paladin(Personaje* g,Personaje* m):Personaje(),Guerrero(),Clerigo(){
     ID=5;
     HP=g->HP+m->HP;
@@ -367,6 +374,7 @@ void Paladin::Habilidad(int n,Personaje *en,QVector<std::shared_ptr<Personaje>> 
     }
 }
 
+// Clase Obispo heredada de Clerigo, Mago y Personaje:
 Obispo::Obispo(Personaje* g,Personaje* m):Personaje(),Mago(),Clerigo(){
     ID=6;
     HP=g->HP+m->HP;

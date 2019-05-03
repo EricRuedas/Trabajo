@@ -11,8 +11,7 @@ screenpersonajes::screenpersonajes(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    // Creación de las opciones del comboBox y incorporación de iconos del personaje:
-
+    // Creación de las opciones del comboBox e incorporación de iconos de los personaje:
     ui->seleccion1->setIconSize(QSize(50,50));
     ui->seleccion2->setIconSize(QSize(50,50));
     ui->seleccion3->setIconSize(QSize(50,50));
@@ -41,7 +40,6 @@ screenpersonajes::screenpersonajes(QWidget *parent) :
     ui->seleccion6->addItem(QIcon(":/mini/miniclerigo2.png"),"Clérigo");
 
     // Para cambiar el tamaño de la letra de las opciones del comboBox:
-
     QFont font;
     font.setPointSize(font.pointSize() + 10);
     ui->seleccion1->setFont(font);
@@ -59,6 +57,8 @@ screenpersonajes::~screenpersonajes()
 
 void screenpersonajes::on_startcombatbutton_clicked()
 {
+    // Al pulsar el botón de "Empezar combate", se abre la nueva ventana de batalla y se cierra la actual de selección de personajes.
+    // Además, se incorporarán en el vector "pjs" las selecciones de los personajes realizadas:
     ScreenCombate c;
     QVector<int> pjs;
     pjs.push_back(ui->seleccion1->currentIndex());
@@ -75,6 +75,7 @@ void screenpersonajes::on_startcombatbutton_clicked()
 
 void screenpersonajes::on_volvermenubutton_clicked()
 {
+    // Se cierra la ventana actual:
     close();
 }
 

@@ -15,5 +15,6 @@ reglas::~reglas()
 
 void reglas::on_pushButton_clicked()
 {
+    // Se cierra la ventana actual:
     close();
 }

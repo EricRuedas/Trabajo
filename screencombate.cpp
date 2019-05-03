@@ -25,14 +25,13 @@ ScreenCombate::ScreenCombate(QWidget *parent) :
     mediaplayer->setVolume(60);
     mediaplayer->play();
 
-    // Para el fondo de batalla:
 
+    // Imagen de fondo de batalla:
     QPixmap fondo(":/mini/fondo.jpeg");
     ui->picfondo->setPixmap(fondo);
 
 
     // Para cambiar los colores y diseños de los QProgressBar:
-
     QString st1 = QString ("QProgressBar::chunk {""background-color: #3299cc;""}");
     st1.append("QProgressBar {""border: 1px solid grey;""border-radius: 2px;""text-align: center;""background: #eeeeee;""}");
     ui->barrapoder1->setStyleSheet(st1);
@@ -44,8 +43,7 @@ ScreenCombate::ScreenCombate(QWidget *parent) :
     ui->barravida2->setStyleSheet(st2);
 
 
-    // Creamos a los personajes
-
+    // Creación de personajes (se incluyen en el vector unos personajes base pero luego se modifican según la elección del jugador):
     equipo1.push_back(std::make_shared<Guerrero>());
     equipo1.push_back(std::make_shared<Mago>());
     equipo1.push_back(std::make_shared<Clerigo>());
@@ -61,12 +59,11 @@ ScreenCombate::ScreenCombate(QWidget *parent) :
     nequi2[2]="Clerigo 2";
 
 
-    //qDebug("Barra:%d\n",ui->barrapoder1->value());
-    // Para ajustar la barra de vida y poder:
+    // Para ajustar parámetros de la fusión y la barra de vida y poder:
     ActualizarPantalla();
 
 
-    //Configuramos el combate
+    // Configuración del combate:
     ActualizarMenu();
     ui->mensaje1->setText("Turno del jugador 1");
 }
@@ -85,9 +82,12 @@ void ScreenCombate::on_Salir_clicked()
 void ScreenCombate::on_usar1_clicked()
 {
     if (turno==1){
+        // Se comprueba que se tengan PP para realizar el ataque:
         if (equipo1[pj1]->PP>=equipo1[pj1]->costes[ui->comboBoxu1->currentIndex()]){
+            // Se realiza el ataque:
             equipo1[pj1]->Habilidad(ui->comboBoxu1->currentIndex(), equipo2[pj2].get(),equipo1);
-            //La animación de combate
+
+            // Animación de combate:
             ui->picpersonaje1->setPixmap(equipo1[pj1]->im_ataque1);
             ui->mensaje1->setText(nequi1[pj1]+" usó "+ui->comboBoxu1->currentText());
 
@@ -99,17 +99,19 @@ void ScreenCombate::on_usar1_clicked()
             qApp->processEvents();
             bloquear();
 
-            //Aquí va el delay
+            // Aquí va el delay para la ejecuación del sonido y el cambio de imagen atacando:
             QEventLoop loop;
             QTimer timer;
             QObject::connect(&timer, &QTimer::timeout, &loop, &QEventLoop::quit);
             timer.start(1500);
             loop.exec();
-            //Fin del delay
+            // Fin del delay
 
+            // Vuelta de la imagen del personaje a la normalidad:
             ui->picpersonaje1->setPixmap(equipo1[pj1]->im_normal1);
             contador=contador+1;
 
+            // Comprobación de si el personaje está debilitado:
             if (equipo2[pj2]->HP<=0){
                 equipo2[pj2]->HP=0;
                 nequi2[pj2]=ui->comboBoxc2->itemText(pj2)+" (D)";
@@ -117,12 +119,16 @@ void ScreenCombate::on_usar1_clicked()
             }
             ui->barrapoder1->setValue(equipo1[pj1]->PP);
             ui->barravida2->setValue(equipo2[pj2]->HP);
+
+            // Se comprueba si al equipo rival le quedan personajes vivos.
+            // De lo contrario, se acaba la partida:
             int v=ComprobarEquipo(equipo2);
             if(v==0){
                 turno=5;
                 ui->mensaje1->setText("¡Gana el jugador 1!");
             }
             else if(equipo2[pj2]->HP==0){
+                // Si tiene más personajes vivos pero el actual esta debilitado, obliga a cambiar:
                 turno=4;
                 ui->mensaje1->setText("Jugador 2, cambie a otro personaje");
                 contador2=0;
@@ -131,6 +137,7 @@ void ScreenCombate::on_usar1_clicked()
                 mediaplayer2->setVolume(100);
                 mediaplayer2->play();
             }else{
+                // Si no, cambia al turno del jugador 2
                 turno=2;
                 ui->mensaje1->setText("Turno del jugador 2");
             }
@@ -142,6 +149,7 @@ void ScreenCombate::on_usar1_clicked()
 
 void ScreenCombate::on_usar2_clicked()
 {
+    // El funcionamiento es el mismo que el del on_usar1_cliked, por lo que no se comentará.
     if (turno==2){
         if (equipo2[pj2]->PP>=equipo2[pj2]->costes[ui->comboBoxu2->currentIndex()]){
             equipo2[pj2]->Habilidad(ui->comboBoxu2->currentIndex(), equipo1[pj1].get(),equipo2);
@@ -200,6 +208,7 @@ void ScreenCombate::on_usar2_clicked()
 }
 
 void ScreenCombate::ActualizarPantalla(){
+    // Se actualizan las barras de cada personaje:
     ui->barrapoder1->setMaximum(equipo1[pj1]->PP_max);
     ui->barrapoder1->setValue(equipo1[pj1]->PP);
     ui->barravida1->setMaximum(equipo1[pj1]->HP_max);
@@ -223,7 +232,6 @@ void ScreenCombate::ActualizarPantalla(){
     ui->barrapoder2->setFormat(formatobarrapoder);
 
     // Actualización de la barra y botón de fusión:
-
     if (contador==0 || fus==1){
         ui->fusionbarra->setValue(0);
         ui->fusiontext1->setText("");
@@ -279,6 +287,7 @@ void ScreenCombate::ActualizarPantalla(){
 }
 
 void ScreenCombate::ActualizarMenu(){
+    //Se actualizan las comboBox a las de los personajes actuales:
     ui->comboBoxu1->clear();
     for(int i=0;i<equipo1[pj1]->hab.count();i++){
         ui->comboBoxu1->addItem(equipo1[pj1]->hab.itemText(i));
@@ -309,6 +318,7 @@ void ScreenCombate::ActualizarMenu(){
 
 void ScreenCombate::on_cambiar1_clicked()
 {
+    // Se comprueba que sea turno de que el jugador 1 cambie y se pueda cambiar al aliado escogido:
     if (turno==1 || turno==3){
         int i=ui->comboBoxc1->currentIndex();
         if(i!=pj1 && equipo1[i]->HP>0){
@@ -334,6 +344,7 @@ void ScreenCombate::on_cambiar1_clicked()
 
 void ScreenCombate::on_cambiar2_clicked()
 {
+    // Se comprueba que sea turno de que el jugador 2 cambie y se pueda cambiar al aliado escogido:
     if (turno==2 || turno==4){
         int i=ui->comboBoxc2->currentIndex();
         if(i!=pj2 && equipo2[i]->HP>0){
@@ -357,6 +368,7 @@ void ScreenCombate::on_cambiar2_clicked()
 }
 
 int ScreenCombate::ComprobarEquipo(QVector<std::shared_ptr<Personaje>> team){
+    // Se mira si todos los personajes del equipo elegido tienen toda la vida:
     int n=team.size(),v=0;
     for(int i=0;i<n;i++){
         if(team[i]->HP>0){v=1;}
@@ -365,6 +377,7 @@ int ScreenCombate::ComprobarEquipo(QVector<std::shared_ptr<Personaje>> team){
 }
 
 void ScreenCombate::ActualizarEquipo(QVector<int> pjs){
+    // Se actualiza el equipo inicial con el recibido de screenpersonajes y se le asigna un nombre:
     equipo1.clear();
     equipo2.clear();
     int g=1,m=1,c=1;
@@ -413,6 +426,7 @@ void ScreenCombate::ActualizarEquipo(QVector<int> pjs){
 
 void ScreenCombate::on_fusion1_clicked()
 {
+    // Se comprueba si se puede fusionar, y en caso afirmativo se crea el nuevo personaje y se actualiza el equipo:
     if (turno==1 && equipo1[pj1]->HP>0 && equipo1[ui->comboBoxf1->currentIndex()]->HP>0){
         fus=0;
         if((equipo1[pj1]->ID==1 && equipo1[ui->comboBoxf1->currentIndex()]->ID==2)||(equipo1[pj1]->ID==2 && equipo1[ui->comboBoxf1->currentIndex()]->ID==1)){
@@ -460,6 +474,7 @@ void ScreenCombate::on_fusion1_clicked()
 
 void ScreenCombate::on_fusion2_clicked()
 {
+    // Se comprueba si se puede fusionar, y en caso afirmativo se crea el nuevo personaje y se actualiza el equipo:
     if (turno==2 && equipo2[pj2]->HP>0 && equipo2[ui->comboBoxf2->currentIndex()]->HP>0){
         fus2=0;
         if((equipo2[pj2]->ID==1 && equipo2[ui->comboBoxf2->currentIndex()]->ID==2)||(equipo2[pj2]->ID==2 && equipo2[ui->comboBoxf2->currentIndex()]->ID==1)){
@@ -506,6 +521,7 @@ void ScreenCombate::on_fusion2_clicked()
 }
 
 void ScreenCombate::ActualizarNombres(int eq){
+    // Se actualizan los nombres después de la fusión:
     if (eq==1){
         for (int i=0; i<3; i++){
             if((i!=pj1)&&(i!=ui->comboBoxf1->currentIndex())){
