@@ -131,6 +131,8 @@ void ScreenCombate::on_usar1_clicked()
                 // Si tiene más personajes vivos pero el actual esta debilitado, obliga a cambiar:
                 turno=4;
                 ui->mensaje1->setText("Jugador 2, cambie a otro personaje");
+                QPixmap tumba2(":/mini/tumba2.png");
+                ui->picpersonaje2->setPixmap(tumba2);
                 contador2=0;
                 mediaplayer2 = new QMediaPlayer(this);
                 mediaplayer2->setMedia(QUrl("qrc:/mini/ouch.mp3"));
@@ -192,6 +194,8 @@ void ScreenCombate::on_usar2_clicked()
             else if(equipo1[pj1]->HP==0){
                 turno=3;
                 ui->mensaje1->setText("Jugador 1, cambie a otro personaje");
+                QPixmap tumba1(":/mini/tumba1.png");
+                ui->picpersonaje1->setPixmap(tumba1);
                 contador=0;
                 mediaplayer2 = new QMediaPlayer(this);
                 mediaplayer2->setMedia(QUrl("qrc:/mini/ouch.mp3"));
